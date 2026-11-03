@@ -1,1 +1,9 @@
-{"id":"example-source","title":"EXAMPLE: a source","url":"https://example.com/","author":"Example Author","year":2024}
+{"id":"snapall-repo","title":"snapall: a Rust command line and terminal UI over snapper, the worked example of everything in this playbook","url":"https://github.com/grenudi/snapall","author":"grenudi","year":2026}
+{"id":"canon-repo","title":"software-engineering-canon: the curated reference these practices were taken from","url":"https://github.com/creation-guidelines/software-engineering-canon","author":"creation-guidelines","year":2026}
+{"id":"tad-engine-repo","title":"tad-engine: the text-as-data engine this repository is built on","url":"https://github.com/creation-guidelines/tad-engine","author":"creation-guidelines","year":2026}
+{"id":"conventional-commits","title":"Conventional Commits 1.0.0","url":"https://www.conventionalcommits.org/","author":null,"year":null}
+{"id":"release-plz","title":"release-plz: release pull requests and changelogs from conventional commits","url":"https://release-plz.dev/","author":null,"year":null}
+{"id":"cargo-deny","title":"cargo-deny: lint the dependency graph (advisories, licences, bans)","url":"https://github.com/EmbarkStudios/cargo-deny","author":"Embark Studios","year":null}
+{"id":"rust-cache","title":"Swatinem/rust-cache: cache Rust build artefacts in GitHub Actions","url":"https://github.com/Swatinem/rust-cache","author":"Arpad Borsos","year":null}
+{"id":"docutils-rst","title":"reStructuredText: the markup specification and docutils","url":"https://docutils.sourceforge.io/rst.html","author":null,"year":null}
+{"id":"git-subrepo","title":"git-subrepo: vendor another repository as a folder, and pull updates into it","url":"https://github.com/ingydotnet/git-subrepo","author":"Ingy dot Net","year":null}
