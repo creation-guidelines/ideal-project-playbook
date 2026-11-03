@@ -1,0 +1,2 @@
+{"from_id":"example-two","to_id":"example-one","relation":"pairs-with","note":"shown as a relation on both pages"}
+{"from_id":"example-add-diagram","to_id":"example-one","relation":"concerns","note":"shows a backlog item linked to the concept it is about"}
