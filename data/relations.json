@@ -1,2 +1,29 @@
-{"from_id":"example-two","to_id":"example-one","relation":"pairs-with","note":"shown as a relation on both pages"}
-{"from_id":"example-add-diagram","to_id":"example-one","relation":"concerns","note":"shows a backlog item linked to the concept it is about"}
+{"from_id":"two-faces","to_id":"top-of-the-layers-beneath","relation":"part-of","note":null}
+{"from_id":"small-languages","to_id":"top-of-the-layers-beneath","relation":"part-of","note":null}
+{"from_id":"names-explain","to_id":"small-languages","relation":"part-of","note":null}
+{"from_id":"one-fact-one-place","to_id":"guards-are-tests","relation":"enforced-by","note":"a copy of a sentence or a rule is a failing test"}
+{"from_id":"findability-test","to_id":"stranger-test","relation":"extends","note":"the stranger test, run on every change"}
+{"from_id":"ratchet","to_id":"guards-are-tests","relation":"part-of","note":null}
+{"from_id":"prove-the-guard-bites","to_id":"guards-are-tests","relation":"needs","note":null}
+{"from_id":"check-the-property","to_id":"prove-the-guard-bites","relation":"extends","note":null}
+{"from_id":"golden-output","to_id":"guards-are-tests","relation":"part-of","note":null}
+{"from_id":"tools-verify-themselves","to_id":"check-the-property","relation":"extends","note":null}
+{"from_id":"resumable-shipper","to_id":"automate-repeated-hand-work","relation":"part-of","note":null}
+{"from_id":"fast-gate","to_id":"automate-repeated-hand-work","relation":"part-of","note":null}
+{"from_id":"automate-repeated-hand-work","to_id":"state-in-the-repo","relation":"needs","note":"the tool is documented in the repository, or the next agent rebuilds it"}
+{"from_id":"branch-per-iteration","to_id":"state-in-the-repo","relation":"needs","note":null}
+{"from_id":"resumable-shipper","to_id":"branch-per-iteration","relation":"needs","note":null}
+{"from_id":"newest-run-counts","to_id":"resumable-shipper","relation":"part-of","note":null}
+{"from_id":"measure-the-ci-first","to_id":"measure-before-and-after","relation":"needs","note":null}
+{"from_id":"ci-small-levers","to_id":"measure-the-ci-first","relation":"extends","note":null}
+{"from_id":"batch-releases","to_id":"measure-the-ci-first","relation":"extends","note":null}
+{"from_id":"race-by-construction","to_id":"check-the-property","relation":"needs","note":null}
+{"from_id":"retire-words","to_id":"tools-verify-themselves","relation":"needs","note":null}
+{"from_id":"retire-words","to_id":"guards-are-tests","relation":"enforced-by","note":null}
+{"from_id":"published-names-stay","to_id":"retire-words","relation":"extends","note":"the exception that is written down"}
+{"from_id":"docs-tell-the-truth","to_id":"guards-are-tests","relation":"enforced-by","note":null}
+{"from_id":"seeded-cold-reads","to_id":"stranger-test","relation":"extends","note":null}
+{"from_id":"use-it-as-a-newcomer","to_id":"seeded-cold-reads","relation":"extends","note":"when reading code stops finding things"}
+{"from_id":"search-by-shape","to_id":"check-the-property","relation":"needs","note":null}
+{"from_id":"say-what-to-do-next","to_id":"one-fact-one-place","relation":"needs","note":null}
+{"from_id":"decide-yourself","to_id":"plain-reports","relation":"needs","note":null}

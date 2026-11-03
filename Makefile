@@ -2,7 +2,7 @@
 SHELL := /bin/bash
 DC = python3 .tad/tools/dc.py
 # The format of the rendered pages: md (the default), rst, or both as md,rst. See .tad/README.md.
-export DOCS_FORMAT ?= md
+export DOCS_FORMAT ?= rst
 
 .PHONY: setup check checks canon render sql test verify
 setup:            ## install pinned DuckDB + Miller
