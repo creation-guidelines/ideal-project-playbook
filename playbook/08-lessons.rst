@@ -93,3 +93,12 @@ A refused recording that still changed things
 
 A shell feature in the wrong shell
     A loop using ``<<<`` failed because the tool's shell is ``sh``. *Taught:* put anything with a shell feature in a script run by ``bash``, and keep one-line commands portable.
+
+A claim about a platform that I had not checked
+    Switching the repository to reStructuredText, I deleted the template's Jekyll files and wrote that GitHub renders ``.rst`` itself. It does, in the file browser, but GitHub Pages does not, so there was no site at
+    all, and the person had to tell me. *Taught:* before removing something that did a job, check what replaces it, by trying it; a claim about what a platform does is a guess until it has been seen to work. The fix was a
+    small builder (docutils, the reference implementation) that fails the build on any broken link or anchor.
+
+A tool that assumed its own repository
+    The first test of the site builder, run against a minimal repository, crashed because it assumed the agent instructions existed. *Taught:* test a tool on a repository that is not yours as soon as it exists; its first assumption is its first bug.
+

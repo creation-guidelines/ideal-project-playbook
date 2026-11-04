@@ -76,3 +76,18 @@ Note
 
 Opened
     2026-11-03
+
+
+.. _site-builder-in-the-engine:
+
+Move the site builder into tad-engine
+-------------------------------------
+
+Status
+    open
+
+Note
+    Every repository that renders reStructuredText from the template needs the same site; the builder belongs in the engine so that it is pulled, not copied. It needs the page list and navigation to come from the rendered pages rather than from this repository's fixed list.
+
+Opened
+    2026-11-03

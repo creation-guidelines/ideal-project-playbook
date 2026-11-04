@@ -19,5 +19,7 @@ jobs:
         run: make test
       - name: Documents are valid reStructuredText and name only real paths
         run: make rst
+      - name: The site builds, and every link in it works
+        run: make site
       - name: Data valid, canonical, docs fresh
         run: make verify
