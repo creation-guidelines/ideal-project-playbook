@@ -7,3 +7,5 @@
 {"id":"rust-cache","title":"Swatinem/rust-cache: cache Rust build artefacts in GitHub Actions","url":"https://github.com/Swatinem/rust-cache","author":"Arpad Borsos","year":null}
 {"id":"docutils-rst","title":"reStructuredText: the markup specification and docutils","url":"https://docutils.sourceforge.io/rst.html","author":null,"year":null}
 {"id":"git-subrepo","title":"git-subrepo: vendor another repository as a folder, and pull updates into it","url":"https://github.com/ingydotnet/git-subrepo","author":"Ingy dot Net","year":null}
+{"id":"snapall-log","title":"snapall development log: what was done, why, the evidence and the mistakes, newest first","url":"https://github.com/grenudi/snapall/blob/main/docs/development-log.md","author":"grenudi","year":2026}
+{"id":"playbook-lessons","title":"This playbook's lessons chapter: each mistake, and the rule it became","url":"https://github.com/creation-guidelines/ideal-project-playbook/blob/main/playbook/08-lessons.rst","author":"creation-guidelines","year":2026}

@@ -34,8 +34,8 @@ waits for the main branch's own CI, decides whether to release (see ``06-ci-and-
 
 The token is read from the environment and is never written to a file.
 
-Structure metrics (``dev/structure-metrics.py``)
-------------------------------------------------
+Structure metrics (``kit/scripts/structure-metrics.py``)
+--------------------------------------------------------
 
 *Why:* progress was being judged by impression.
 
@@ -98,13 +98,26 @@ Golden output and fixtures
 real filesystem) and store or compare the exact text. Note the pitfall: the script runs the program at a fixed path. From a second working copy
 the program was not there, and the recording was *empty*, which showed as 1,096 deleted lines. Read the diff before you commit a recording.
 
-Driving a terminal UI
----------------------
+Driving a terminal UI (``kit/scripts/screens.py``)
+--------------------------------------------------
 
 In snapall (``dev/tui-e2e.py``), a terminal program is tested through a pseudo-terminal and a terminal emulator library (``pyte``): the test sends keys, waits for text on the
 emulated screen, and asserts on it. The same helper, imported without running the suite, is how an agent *looks at* the screens of the program
 (``Tui().text()``), which is how the window's prompts and help were read as a newcomer would. (Box-drawing characters are multibyte: do not
 cut such output with a byte-oriented tool, or the stream is invalid.)
+
+The catalogue of guards, wired up
+---------------------------------
+
+``kit/guards/rules.py`` is the catalogue as functions (each reads files and returns ``{name: number}``, which is exactly what the ratchet takes), and ``kit/guards/architecture.py`` wires them
+into one guard with a CONFIG block: this repository's own guard, and the one to copy. A rule is added there when a defect found by a read could return. The retired-word rule uses a small lexer, so a word in a string or a
+comment is not mistaken for one in code.
+
+Starting files and CI
+---------------------
+
+``kit/templates/`` holds the files a project starts with (agent notes, idea page, log, plan, pull-request body) and ``kit/ci/`` the CI workflow with the measured levers, the pull-request title lint,
+the release configuration and a dependency policy. ``kit/README.rst`` is the map.
 
 Release policy as a tested function
 -----------------------------------

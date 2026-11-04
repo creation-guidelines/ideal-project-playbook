@@ -29,3 +29,4 @@
 {"from_id":"decide-yourself","to_id":"plain-reports","relation":"needs","note":null}
 {"from_id":"generalise-with-a-parity-test","to_id":"check-the-property","relation":"extends","note":"the property is: it still does what the original did"}
 {"from_id":"generalise-with-a-parity-test","to_id":"tools-verify-themselves","relation":"needs","note":null}
+{"from_id":"look-at-what-people-see","to_id":"use-it-as-a-newcomer","relation":"extends","note":"for what is seen rather than read"}

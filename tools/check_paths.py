@@ -26,7 +26,8 @@ def looks_like_a_path_here(text):
 
 
 def main():
-    files = sorted(f for f in glob.glob(os.path.join(ROOT, "**", "*.rst"), recursive=True) if "/.git/" not in f and "/node_modules/" not in f)
+    # the templates name the files of a project that does not exist yet, so they are not checked against this repository
+    files = sorted(f for f in glob.glob(os.path.join(ROOT, "**", "*.rst"), recursive=True) if "/.git/" not in f and "/node_modules/" not in f and "/kit/templates/" not in f)
     missing, checked = [], 0
     for path in files:
         for number, line in enumerate(open(path, encoding="utf-8").read().split("\n"), 1):

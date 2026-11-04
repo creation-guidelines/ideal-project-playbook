@@ -98,6 +98,9 @@ Before the first improvement, make these exist. Each is small.
 7. A **ratchet file** (``tests/ratchets.json``): the debts the guards know about, as numbers
    per file, which may only go down.
 
+The files to start from are in ``kit/templates/`` (agent notes, idea page, log, plan, pull-request body) and ``kit/ci/`` (CI, pull-request title lint, release configuration, dependency
+policy); ``kit/README.rst`` is the map of the whole kit.
+
 Then write the **idea page** (one page: the idea, one request followed from the front door
 to the machine, how to tell the code is healthy, and an honest account of where it is not
 close to the ideal) and link it from the README. A newcomer must meet the idea before the code.
@@ -139,13 +142,13 @@ order; each makes the next cheaper. Reference implementations are in ``kit/``.
 
 1. **The gate and the shipper** (day one, above). Without them every iteration costs ten
    manual steps and iterations stop being cheap.
-2. **Structure metrics**: a script that measures the code now against each earlier release
+2. **Structure metrics** (``kit/scripts/structure-metrics.py``): a script that measures the code now against each earlier release
    (files over a size, functions over a size, median file, bare booleans, prints outside the
    presenter, modules with no purpose sentence, purposes using pattern jargon). Run it
    against a tag from the start of the work, and report the *trend* in plain words.
 3. **The outline and the findability test**: the cold read, as a test that runs on every
    change. (``kit/guards/outline.py``, ``kit/guards/findability.py``.)
-4. **Architecture guards** as ordinary tests that read the source: see the catalogue below.
+4. **Architecture guards** as ordinary tests that read the source (``kit/guards/rules.py``, wired up in ``kit/guards/architecture.py``): see the catalogue below.
    (``kit/guards/ratchet.py``.)
 5. **Golden output**: record the exact text of every command on a real fixture; CI fails on
    any difference. A wording change then shows as the few lines that moved. Re-record only
@@ -203,7 +206,8 @@ of cost, and switch when one stops paying.
 - **Scans.** What reading finds one at a time, a script finds all at once.
 - **Use the program as a newcomer.** Run the real program on a real fixture, from first use to
   going back, and read every word it prints. Drive a terminal UI through a pseudo-terminal and
-  print its screens. Reading code finds what is wrong with code; only using the program finds
+  print its screens (``kit/scripts/screens.py``), and look at the real page in a real browser: a screenshot found three defects of this playbook's own site that every structural check had
+  passed. Reading code finds what is wrong with code; only using the program finds
   what is wrong with what it *says*: a preview that spent two of three numbers on zeros, a
   first snapshot that never said what its restore point was called, a retired word in a header.
 - **Read the documentation of every switch** and check the code obeys it. A hint added next to

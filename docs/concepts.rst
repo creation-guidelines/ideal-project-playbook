@@ -36,6 +36,9 @@ Tags
 Relations
     - → part-of: `Every layer is the top of the layers beneath it <concepts.rst#top-of-the-layers-beneath>`__
 
+Sources
+    `software-engineering-canon: the curated reference these practices were taken from <https://github.com/creation-guidelines/software-engineering-canon>`__, `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _small-languages:
 
@@ -70,6 +73,9 @@ Tags
 Relations
     - → part-of: `Each layer is a small language <concepts.rst#small-languages>`__
 
+Sources
+    `software-engineering-canon: the curated reference these practices were taken from <https://github.com/creation-guidelines/software-engineering-canon>`__, `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _one-fact-one-place:
 
@@ -86,6 +92,9 @@ Relations
     - → enforced-by: `Guards are tests that read the source <concepts.rst#guards-are-tests>`__ — a copy of a sentence or a rule is a failing test
     - ← needs: `Say what to do next, once <concepts.rst#say-what-to-do-next>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _stranger-test:
 
@@ -101,6 +110,9 @@ Tags
 Relations
     - ← extends: `Findability as a test <concepts.rst#findability-test>`__ — the stranger test, run on every change
     - ← extends: `Seeded cold reads <concepts.rst#seeded-cold-reads>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _findability-test:
@@ -177,6 +189,9 @@ Relations
     - → needs: `Guards are tests that read the source <concepts.rst#guards-are-tests>`__
     - ← extends: `Check the property, not the symptom <concepts.rst#check-the-property>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _check-the-property:
 
@@ -196,6 +211,9 @@ Relations
     - ← needs: `Search by shape, and read all of the results <concepts.rst#search-by-shape>`__
     - ← extends: `Generalise a tool with a parity test <concepts.rst#generalise-with-a-parity-test>`__ — the property is: it still does what the original did
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _measure-before-and-after:
 
@@ -210,6 +228,9 @@ Tags
 
 Relations
     - ← needs: `Measure the CI before optimising it <concepts.rst#measure-the-ci-first>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _seeded-cold-reads:
@@ -244,6 +265,7 @@ Tags
 
 Relations
     - → extends: `Seeded cold reads <concepts.rst#seeded-cold-reads>`__ — when reading code stops finding things
+    - ← extends: `Look at what people will see <concepts.rst#look-at-what-people-see>`__ — for what is seen rather than read
 
 Sources
     `snapall: a Rust command line and terminal UI over snapper, the worked example of everything in this playbook <https://github.com/grenudi/snapall>`__
@@ -262,6 +284,9 @@ Tags
 
 Relations
     - → part-of: `Guards are tests that read the source <concepts.rst#guards-are-tests>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _tools-verify-themselves:
@@ -299,6 +324,9 @@ Relations
     - → needs: `State and plans live in the repository <concepts.rst#state-in-the-repo>`__ — the tool is documented in the repository, or the next agent rebuilds it
     - ← part-of: `A stateless, resumable shipper <concepts.rst#resumable-shipper>`__
     - ← part-of: `A fast local gate; CI for the rest <concepts.rst#fast-gate>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _state-in-the-repo:
@@ -391,6 +419,9 @@ Tags
 Relations
     - → part-of: `A stateless, resumable shipper <concepts.rst#resumable-shipper>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _measure-the-ci-first:
 
@@ -407,6 +438,9 @@ Relations
     - → needs: `Measure before you claim <concepts.rst#measure-before-and-after>`__
     - ← extends: `The levers that paid <concepts.rst#ci-small-levers>`__
     - ← extends: `Release in batches, not on every merge <concepts.rst#batch-releases>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _ci-small-levers:
@@ -459,6 +493,9 @@ Tags
 Relations
     - → needs: `Check the property, not the symptom <concepts.rst#check-the-property>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _retire-words:
 
@@ -476,6 +513,9 @@ Relations
     - → enforced-by: `Guards are tests that read the source <concepts.rst#guards-are-tests>`__
     - ← extends: `Published identities are not renamed for a word <concepts.rst#published-names-stay>`__ — the exception that is written down
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _published-names-stay:
 
@@ -490,6 +530,9 @@ Tags
 
 Relations
     - → extends: `Retire a word with a guard <concepts.rst#retire-words>`__ — the exception that is written down
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _docs-tell-the-truth:
@@ -524,6 +567,9 @@ Tags
 Relations
     - ← needs: `Decide, following the canon and the project's interest <concepts.rst#decide-yourself>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _decide-yourself:
 
@@ -538,6 +584,9 @@ Tags
 
 Relations
     - → needs: `Report in plain words, at the big picture <concepts.rst#plain-reports>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _search-by-shape:
@@ -554,6 +603,9 @@ Tags
 Relations
     - → needs: `Check the property, not the symptom <concepts.rst#check-the-property>`__
 
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
+
 
 .. _say-what-to-do-next:
 
@@ -568,6 +620,9 @@ Tags
 
 Relations
     - → needs: `A fact, a word or a rule lives in one place <concepts.rst#one-fact-one-place>`__
+
+Sources
+    `snapall development log: what was done, why, the evidence and the mistakes, newest first <https://github.com/grenudi/snapall/blob/main/docs/development-log.md>`__
 
 
 .. _generalise-with-a-parity-test:
@@ -587,3 +642,21 @@ Relations
 
 Sources
     `snapall: a Rust command line and terminal UI over snapper, the worked example of everything in this playbook <https://github.com/grenudi/snapall>`__
+
+
+.. _look-at-what-people-see:
+
+Look at what people will see
+----------------------------
+
+Statement
+    A check that a page answers, or that every link on it resolves, cannot see that it looks wrong. Look at it the way a reader will: a screenshot of the real page in a real browser, of the live site and not only of a local build. Three defects of this playbook's own site (literals not styled as code, a table of contents drawn like the navigation bar, headings drawn as links) were visible only that way.
+
+Tags
+    reading, output
+
+Relations
+    - → extends: `Use the program as a newcomer would <concepts.rst#use-it-as-a-newcomer>`__ — for what is seen rather than read
+
+Sources
+    `This playbook's lessons chapter: each mistake, and the rule it became <https://github.com/creation-guidelines/ideal-project-playbook/blob/main/playbook/08-lessons.rst>`__
