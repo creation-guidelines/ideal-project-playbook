@@ -39,6 +39,7 @@ Rules for the data
 1. Never hand-edit ``data/*.json`` or anything in ``docs/``. Change data through SQL: ``make sql Q="UPDATE ...; SELECT ..."``. Then ``make render``.
 2. Finish with ``make canon`` (``make sql`` does it for you). DuckDB must write the final bytes.
 3. No BLOB columns; no foreign keys (put integrity in ``checks/*.sql``); do not change DuckDB session settings.
+   Do not bump DuckDB (or any dependency of ``.tad/``) here: it is pinned by the engine, whose tests run against the pin, and a hand edit of ``.tad/`` turns the next ``git subrepo pull`` into a conflict. Bump it in ``tad-engine`` and pull.
 4. Every id in every table shares one namespace (``checks/01_ids_unique_across_tables.sql``).
 5. A value may use the Markdown inline subset (code, links, bold, emphasis); the engine converts it for reStructuredText.
 6. Add a **practice** as a ``concepts`` row with the *what* and the *why*, relate it to what it needs or extends in ``relations``, cite it in ``concept_sources``, and record any decision about it
