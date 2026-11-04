@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.0.0 (2026-11-04)
+
+
+### Features
+
+* **data:** the playbook as data, rendered as reStructuredText ([#2](https://github.com/creation-guidelines/ideal-project-playbook/issues/2)) ([4c88d98](https://github.com/creation-guidelines/ideal-project-playbook/commit/4c88d98b09def2fd9b3dfab3f2ad061d9f9b8197))
+* **kit:** the guards catalogue, templates and CI configuration, and the audit's fixes ([#9](https://github.com/creation-guidelines/ideal-project-playbook/issues/9)) ([7aacc7b](https://github.com/creation-guidelines/ideal-project-playbook/commit/7aacc7bac42b814cf20a3f6f9e51ee0e41772612))
+* **site:** a GitHub Pages site built from the reStructuredText ([#6](https://github.com/creation-guidelines/ideal-project-playbook/issues/6)) ([4e33ca8](https://github.com/creation-guidelines/ideal-project-playbook/commit/4e33ca810d663fb824b5e77c800cbaff567360db))
+* the playbook, the agent instructions and a tested kit ([#4](https://github.com/creation-guidelines/ideal-project-playbook/issues/4)) ([39b3707](https://github.com/creation-guidelines/ideal-project-playbook/commit/39b3707f4143f24d82f4d37ece096d071cec30a9))
+
+
+### Bug Fixes
+
+* **ci:** dependabot leaves the vendored engine alone ([#5](https://github.com/creation-guidelines/ideal-project-playbook/issues/5)) ([e71f659](https://github.com/creation-guidelines/ideal-project-playbook/commit/e71f6595d1a97a6670e96e3b15672a3f510c860e))
+* **kit:** the tools run on a fresh repository, and the gate is in the tests ([#10](https://github.com/creation-guidelines/ideal-project-playbook/issues/10)) ([78e6724](https://github.com/creation-guidelines/ideal-project-playbook/commit/78e672415d2ee4dfe9cbccfaf3de6452772cf5d0))
+* **site:** literals are styled as code, and the site URL is a link ([#7](https://github.com/creation-guidelines/ideal-project-playbook/issues/7)) ([bcc4a56](https://github.com/creation-guidelines/ideal-project-playbook/commit/bcc4a56dfa9b2f9f9bcb1d1a4f2eed4a8f54e325))
+* **site:** the contents block and the headings look as they should ([#8](https://github.com/creation-guidelines/ideal-project-playbook/issues/8)) ([c30ab4e](https://github.com/creation-guidelines/ideal-project-playbook/commit/c30ab4e331f3155b163b3eb40845cc02371a219b))
+
 ## [1.2.0](https://github.com/creation-guidelines/text-as-data-template/compare/v1.1.2...v1.2.0) (2026-09-22)
 
 
