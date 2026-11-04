@@ -18,7 +18,7 @@ Year
     2026
 
 Cited by
-    `Each layer is a small language <concepts.rst#small-languages>`__, `Guards are tests that read the source <concepts.rst#guards-are-tests>`__, `Debts are data and only shrink <concepts.rst#ratchet>`__, `Findability as a test <concepts.rst#findability-test>`__, `A stateless, resumable shipper <concepts.rst#resumable-shipper>`__, `A fast local gate; CI for the rest <concepts.rst#fast-gate>`__, `Tools that rewrite code verify themselves <concepts.rst#tools-verify-themselves>`__, `The levers that paid <concepts.rst#ci-small-levers>`__, `Release in batches, not on every merge <concepts.rst#batch-releases>`__, `Use the program as a newcomer would <concepts.rst#use-it-as-a-newcomer>`__, `Seeded cold reads <concepts.rst#seeded-cold-reads>`__
+    `Each layer is a small language <concepts.rst#small-languages>`__, `Guards are tests that read the source <concepts.rst#guards-are-tests>`__, `Debts are data and only shrink <concepts.rst#ratchet>`__, `Findability as a test <concepts.rst#findability-test>`__, `A stateless, resumable shipper <concepts.rst#resumable-shipper>`__, `A fast local gate; CI for the rest <concepts.rst#fast-gate>`__, `Tools that rewrite code verify themselves <concepts.rst#tools-verify-themselves>`__, `The levers that paid <concepts.rst#ci-small-levers>`__, `Release in batches, not on every merge <concepts.rst#batch-releases>`__, `Use the program as a newcomer would <concepts.rst#use-it-as-a-newcomer>`__, `Seeded cold reads <concepts.rst#seeded-cold-reads>`__, `Generalise a tool with a parity test <concepts.rst#generalise-with-a-parity-test>`__
 
 
 .. _canon-repo:
