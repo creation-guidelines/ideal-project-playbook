@@ -226,7 +226,7 @@ def verify_release(sha):
 def main(argv):
     if "--check" in argv:
         info = api("")
-        say(f"repository {REPO}: {info.get('full_name', info)}")
+        say(f"repository {info.get('full_name', REPO)} is reachable with this token (default branch {info.get('default_branch', '?')}; push access: {info.get('permissions', {}).get('push', 'unknown')})")
         return
     flags = {a for a in argv if a.startswith("--")}
     positional = [a for a in argv if not a.startswith("--")]

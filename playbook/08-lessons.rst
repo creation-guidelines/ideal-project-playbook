@@ -114,3 +114,8 @@ A quoted file that is not a file
     The path check flagged the kit's own map, which named files relative to the folder it described. *Taught:* in a document a path is the full path, always; and templates, which name the files of a project that does not exist yet,
     are exempt from the check by name, visibly.
 
+
+Tools proven on the project they came from, not on a fresh one
+    Asked "is it complete?", running the shipper, the timing report and the gate against *this* repository (not snapall) found three defects: the report looked for a workflow named exactly ``CI`` and this one is called ``ci``; the gate
+    assumed it lived one folder below the root; the shipper's check message was unclear. Each had passed every test, because every test ran on the project the tool was extracted from. *Taught:* before calling a kit complete, run every
+    tool on a repository that is not its origin, and put the commands that do it in the build (here the gate now runs in ``make test``).

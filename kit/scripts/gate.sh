@@ -14,7 +14,8 @@
 # Each step writes its output to /tmp/gate/NAME.log and prints one line; a failing step prints the end of its log. The exit code is
 # 0 only if every step passed.
 set -u
-here=$(cd "$(dirname "$0")/.." && pwd)
+# the repository root, wherever this script is kept (dev/, kit/scripts/, ...): the gate runs from the root
+here=$(git -C "$(dirname "$0")" rev-parse --show-toplevel 2>/dev/null) || { echo "gate.sh: not inside a git repository"; exit 2; }
 cd "$here" || exit 2
 mkdir -p /tmp/gate
 failed=0

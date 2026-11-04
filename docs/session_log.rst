@@ -359,3 +359,23 @@ Considered
 
 Rejected
     A reader of the playbook who wants to start a project should not have to read another project to find the templates; links go stale and the playbook must stand alone.
+
+----
+
+
+.. _kit-on-a-fresh-repository:
+
+The kit, run on a repository that is not its origin
+---------------------------------------------------
+
+Entry date
+    2026-11-04
+
+Done
+    Ran the shipper, the timing report and the gate against this repository and fixed three defects (a workflow name matched case-sensitively, a gate that assumed where it lives, an unclear check message). The gate now runs as part of the tests, so it cannot silently stop working.
+
+Considered
+    Declaring the kit complete because every test passed.
+
+Rejected
+    Every test ran on the project the tools came from; a tool that has not been run elsewhere has not been tested for being general.
