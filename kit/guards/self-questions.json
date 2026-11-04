@@ -1,16 +1,107 @@
 {
   "top": 3,
   "questions": [
-    {"question": "where is it decided when a merge makes a release?", "answers": ["scripts/ship.py"]},
-    {"question": "how do I see how long CI takes?", "answers": ["scripts/ci-timings.py"]},
-    {"question": "which tool finds code that was copied?", "answers": ["scripts/find-duplicates.py"]},
-    {"question": "how do I pick random modules to read as a stranger?", "answers": ["scripts/sample-modules.py"]},
-    {"question": "where is a debt that may only shrink recorded?", "answers": ["guards/ratchet.py"]},
-    {"question": "what ranks questions against the outline?", "answers": ["guards/findability.py"]},
-    {"question": "how do I run every check before pushing?", "answers": ["scripts/gate.sh"]},
-    {"question": "how do I record what the program prints?", "answers": ["scripts/golden-output.sh"]},
-    {"question": "where is the outline of every module built?", "answers": ["guards/outline.py"]},
-    {"question": "where do I check that the restructured text files are valid?", "answers": ["tools/check_rst.py"]},
-    {"question": "where is the release policy tested?", "answers": ["scripts/test_ship.py"]}
+    {
+      "question": "where is it decided when a merge makes a release?",
+      "answers": [
+        "scripts/ship.py"
+      ]
+    },
+    {
+      "question": "how do I see how long CI takes?",
+      "answers": [
+        "scripts/ci-timings.py"
+      ]
+    },
+    {
+      "question": "which tool finds code that was copied?",
+      "answers": [
+        "scripts/find-duplicates.py"
+      ]
+    },
+    {
+      "question": "how do I pick random modules to read as a stranger?",
+      "answers": [
+        "scripts/sample-modules.py"
+      ]
+    },
+    {
+      "question": "where is a debt that may only shrink recorded?",
+      "answers": [
+        "guards/ratchet.py"
+      ]
+    },
+    {
+      "question": "what ranks questions against the outline?",
+      "answers": [
+        "guards/findability.py"
+      ]
+    },
+    {
+      "question": "how do I run every check before pushing?",
+      "answers": [
+        "scripts/gate.sh"
+      ]
+    },
+    {
+      "question": "how do I record what the program prints?",
+      "answers": [
+        "scripts/golden-output.sh"
+      ]
+    },
+    {
+      "question": "where is the outline of every module built?",
+      "answers": [
+        "guards/outline.py"
+      ]
+    },
+    {
+      "question": "where do I check that the restructured text files are valid?",
+      "answers": [
+        "tools/check_rst.py"
+      ]
+    },
+    {
+      "question": "where is the release policy tested?",
+      "answers": [
+        "scripts/test_ship.py"
+      ]
+    },
+    {
+      "question": "where is the catalogue of architecture rules?",
+      "answers": [
+        "guards/rules.py"
+      ]
+    },
+    {
+      "question": "how do I look at the screens of a terminal program?",
+      "answers": [
+        "scripts/screens.py"
+      ]
+    },
+    {
+      "question": "how do I see how the shape of the code changed since a release?",
+      "answers": [
+        "scripts/structure-metrics.py"
+      ]
+    },
+    {
+      "question": "where are all the guards wired up for this repository?",
+      "answers": [
+        "guards/architecture.py"
+      ]
+    },
+    {
+      "question": "how do I split a module by purpose without losing a comment?",
+      "answers": [
+        "rust/split-module.py"
+      ]
+    },
+    {
+      "question": "how do I rename a word without touching a string?",
+      "answers": [
+        "rust/rename-identifier.py"
+      ]
+    }
   ]
 }
