@@ -25,6 +25,7 @@ test:             ## tests for .tad/ (the engine), kit/guards and the release po
 	python3 kit/guards/architecture.py
 	python3 kit/scripts/test_structure_metrics.py
 	python3 kit/scripts/test_screens.py
+	bash kit/scripts/gate.sh
 	python3 kit/scripts/test_ship.py
 	python3 tools/test_site.py
 rst:              ## every .rst file is valid and every path a document names exists

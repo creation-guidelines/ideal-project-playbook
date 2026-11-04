@@ -44,9 +44,11 @@ def when(text):
 def main(argv):
     option = lambda name, default: next((argv[i + 1] for i, a in enumerate(argv) if a == f"--{name}" and i + 1 < len(argv)), default)
     count, workflow, steps = int(option("runs", "8")), option("workflow", "CI"), "--steps" in argv
-    runs = [r for r in api("actions/runs?per_page=100&status=completed")["workflow_runs"] if r["name"] == workflow and r["conclusion"] == "success"][:count]
+    recent = [r for r in api("actions/runs?per_page=100&status=completed")["workflow_runs"] if r["conclusion"] == "success"]
+    runs = [r for r in recent if r["name"].lower() == workflow.lower()][:count]
     if not runs:
-        sys.exit(f"no successful runs of {workflow!r} among the recent ones")
+        names = sorted({r["name"] for r in recent})
+        sys.exit(f"no successful runs of {workflow!r} among the recent ones; workflows with some: {', '.join(names) or 'none'} (choose one with --workflow)")
     walls, minutes, jobs_seen, steps_seen = [], [], {}, {}
     for run in runs:
         jobs = api(f"actions/runs/{run['id']}/jobs?per_page=100")["jobs"]
