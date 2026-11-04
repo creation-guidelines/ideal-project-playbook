@@ -89,6 +89,12 @@ def test_the_front_page_title_is_not_doubled_and_the_navigation_lists_only_pages
     assert "<title>The idea - ideal-project-playbook</title>" in read(out, "playbook/idea.html")
 
 
+def test_the_navigation_styles_do_not_leak_onto_the_table_of_contents():
+    # docutils writes a table of contents as <nav class="contents">; the bar's styles must be scoped to the site's own nav
+    assert "body > nav {" in site.CSS and "\nnav {" not in site.CSS and "\nnav a" not in site.CSS
+    assert "a.toc-backref" in site.CSS, "headings are links back to the contents; they must not look like links"
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
 
 if __name__ == "__main__":
