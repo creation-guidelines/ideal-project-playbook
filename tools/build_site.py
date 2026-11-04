@@ -39,8 +39,9 @@ main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
 h1, h2, h3 { line-height: 1.25; font-family: system-ui, sans-serif; } h1 { font-size: 1.9rem; } h2 { font-size: 1.4rem; margin-top: 2.2rem; border-bottom: 1px solid var(--line); padding-bottom: .2rem; }
 h3 { font-size: 1.12rem; margin-top: 1.8rem; }
 a { color: var(--accent); }
-pre, code, tt { font: 14.5px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--code); border-radius: 4px; }
-code, tt { padding: .1em .3em; } pre { padding: .8rem 1rem; overflow-x: auto; } pre code { padding: 0; background: none; }
+pre, code, tt, .literal { font: 14.5px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--code); border-radius: 4px; }
+code, tt, .literal { padding: .1em .3em; } pre { padding: .8rem 1rem; overflow-x: auto; } pre code, pre .literal { padding: 0; background: none; }
+h1 .literal, h2 .literal, h3 .literal { background: none; padding: 0; font-size: inherit; }
 blockquote { margin: 1rem 0; padding: .2rem 1.1rem; border-left: 3px solid var(--line); color: var(--dim); }
 dl dt { font-family: system-ui, sans-serif; font-weight: 600; margin-top: .9rem; } dl dd { margin-left: 1.4rem; }
 .contents, .topic { background: var(--code); border-radius: 6px; padding: .4rem 1.2rem; font: 15px/1.5 system-ui, sans-serif; } .topic-title { font-weight: 600; }
