@@ -33,8 +33,9 @@ CSS = """\
 @media (prefers-color-scheme: dark) { :root { --fg: #e6e6e3; --bg: #17171a; --dim: #9a9aa1; --line: #2c2c31; --accent: #78aeed; --code: #222226; } }
 html { font: 17px/1.6 Georgia, "Iowan Old Style", "Times New Roman", serif; }
 body { margin: 0; color: var(--fg); background: var(--bg); }
-nav { border-bottom: 1px solid var(--line); padding: .6rem 1rem; display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font: 15px/1.4 system-ui, sans-serif; }
-nav a { color: var(--dim); text-decoration: none; } nav a:hover, nav a.here { color: var(--accent); }
+body > nav { border-bottom: 1px solid var(--line); padding: .6rem 1rem; display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font: 15px/1.4 system-ui, sans-serif; }
+body > nav a { color: var(--dim); text-decoration: none; } body > nav a:hover, body > nav a.here { color: var(--accent); }
+a.toc-backref { color: inherit; text-decoration: none; }
 main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
 h1, h2, h3 { line-height: 1.25; font-family: system-ui, sans-serif; } h1 { font-size: 1.9rem; } h2 { font-size: 1.4rem; margin-top: 2.2rem; border-bottom: 1px solid var(--line); padding-bottom: .2rem; }
 h3 { font-size: 1.12rem; margin-top: 1.8rem; }
@@ -44,7 +45,7 @@ code, tt, .literal { padding: .1em .3em; } pre { padding: .8rem 1rem; overflow-x
 h1 .literal, h2 .literal, h3 .literal { background: none; padding: 0; font-size: inherit; }
 blockquote { margin: 1rem 0; padding: .2rem 1.1rem; border-left: 3px solid var(--line); color: var(--dim); }
 dl dt { font-family: system-ui, sans-serif; font-weight: 600; margin-top: .9rem; } dl dd { margin-left: 1.4rem; }
-.contents, .topic { background: var(--code); border-radius: 6px; padding: .4rem 1.2rem; font: 15px/1.5 system-ui, sans-serif; } .topic-title { font-weight: 600; }
+nav.contents, .contents, .topic { background: var(--code); border-radius: 6px; padding: .4rem 1.2rem; font: 15px/1.5 system-ui, sans-serif; } .contents ul { margin: .4rem 0; } .topic-title { font-weight: 600; }
 footer { max-width: 46rem; margin: 0 auto; padding: 1rem 1.2rem 3rem; border-top: 1px solid var(--line); color: var(--dim); font: 14px/1.5 system-ui, sans-serif; }
 """
 
