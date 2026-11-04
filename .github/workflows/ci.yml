@@ -17,5 +17,7 @@ jobs:
       - run: pip install -r .tad/requirements.txt -r .tad/requirements-test.txt
       - name: Tooling tests
         run: make test
+      - name: Documents are valid reStructuredText and name only real paths
+        run: make rst
       - name: Data valid, canonical, docs fresh
         run: make verify

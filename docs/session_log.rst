@@ -299,3 +299,23 @@ Considered
 
 Rejected
     A second tool has two sources of truth; rendering from the data keeps one.
+
+----
+
+
+.. _the-kit-is-tested-on-itself:
+
+The kit is generalised, and tested on itself
+--------------------------------------------
+
+Entry date
+    2026-11-03
+
+Done
+    The shipper, the scans, the sampler, the gate, golden output and the CI report were made language- and project-neutral, and the ratchet, the outline and the findability ranking were ported to Python with tests. The sampler picks exactly the same modules as the original for the same seed. The duplicate scan matched the original's results (11 exact and 223 near runs) once given the original's exact notion of a trivial line, which showed the one remaining difference was deliberate (it also ignores closers like ``});``). Golden output refuses to record a program that cannot be found or prints nothing, and a refused recording changes nothing. Three mutations of the guards were each caught by tests. The repository's own outline answers 11 real questions about its own scripts within the top three.
+
+Considered
+    Copying the scripts across unchanged, with a note that they were written for another project.
+
+Rejected
+    A copy hard-codes the first project's names, paths and release workflows, so the second project would start by editing a script it did not write; settings and options keep one script.

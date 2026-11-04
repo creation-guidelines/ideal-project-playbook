@@ -194,6 +194,7 @@ Relations
     - ← extends: `Tools that rewrite code verify themselves <concepts.rst#tools-verify-themselves>`__
     - ← needs: `Remove a race by construction <concepts.rst#race-by-construction>`__
     - ← needs: `Search by shape, and read all of the results <concepts.rst#search-by-shape>`__
+    - ← extends: `Generalise a tool with a parity test <concepts.rst#generalise-with-a-parity-test>`__ — the property is: it still does what the original did
 
 
 .. _measure-before-and-after:
@@ -277,6 +278,7 @@ Tags
 Relations
     - → extends: `Check the property, not the symptom <concepts.rst#check-the-property>`__
     - ← needs: `Retire a word with a guard <concepts.rst#retire-words>`__
+    - ← needs: `Generalise a tool with a parity test <concepts.rst#generalise-with-a-parity-test>`__
 
 Sources
     `snapall: a Rust command line and terminal UI over snapper, the worked example of everything in this playbook <https://github.com/grenudi/snapall>`__
@@ -566,3 +568,22 @@ Tags
 
 Relations
     - → needs: `A fact, a word or a rule lives in one place <concepts.rst#one-fact-one-place>`__
+
+
+.. _generalise-with-a-parity-test:
+
+Generalise a tool with a parity test
+------------------------------------
+
+Statement
+    When a script built for one project is made general, run the general one and the original on the original's own project and compare the results. If they differ, form a hypothesis and test it with a controlled experiment (give the new one the old one's exact rule and see whether the results then match) until every difference is explained and deliberate. A generalisation that is 'about the same' has changed something nobody chose.
+
+Tags
+    discipline, automation
+
+Relations
+    - → extends: `Check the property, not the symptom <concepts.rst#check-the-property>`__ — the property is: it still does what the original did
+    - → needs: `Tools that rewrite code verify themselves <concepts.rst#tools-verify-themselves>`__
+
+Sources
+    `snapall: a Rust command line and terminal UI over snapper, the worked example of everything in this playbook <https://github.com/grenudi/snapall>`__

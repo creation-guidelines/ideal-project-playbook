@@ -27,3 +27,5 @@
 {"from_id":"search-by-shape","to_id":"check-the-property","relation":"needs","note":null}
 {"from_id":"say-what-to-do-next","to_id":"one-fact-one-place","relation":"needs","note":null}
 {"from_id":"decide-yourself","to_id":"plain-reports","relation":"needs","note":null}
+{"from_id":"generalise-with-a-parity-test","to_id":"check-the-property","relation":"extends","note":"the property is: it still does what the original did"}
+{"from_id":"generalise-with-a-parity-test","to_id":"tools-verify-themselves","relation":"needs","note":null}
