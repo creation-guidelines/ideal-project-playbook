@@ -1,0 +1,81 @@
+# A CI workflow with the levers that were measured to pay (see playbook/06-ci-and-releases.rst). Replace the <placeholders>.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  # <your build tool's settings that make a clean CI build cheaper: no incremental state, light debug info, download retries>
+  # e.g. for Rust: CARGO_INCREMENTAL: 0, CARGO_PROFILE_DEV_DEBUG: line-tables-only, CARGO_NET_RETRY: 10
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Decide what a change needs. Only a pull request is narrowed, and only when every file it touches is a document: the tests that check the
+  # documents against the code still run. A push to main always runs everything.
+  changes:
+    name: what changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5            # a timeout on EVERY job: a hung job is a failure in minutes, not hours
+    outputs:
+      code: ${{ steps.diff.outputs.code }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+      - id: diff
+        run: |
+          code=true
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            files="$(git diff --name-only HEAD^1 HEAD)"
+            printf 'changed:\n%s\n' "$files"
+            if ! printf '%s\n' "$files" | grep -qvE '^(docs/|[^/]+\.(md|rst)$)'; then code=false; fi
+          fi
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
+  test:
+    name: build, test, lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      # <setup your toolchain, and a cache that is SAVED ONLY FROM MAIN, so pull requests read it and never write a competing one:>
+      # - uses: Swatinem/rust-cache@v2
+      #   with:
+      #     save-if: ${{ github.ref == 'refs/heads/main' }}
+      - name: The documents name only real paths and every link works
+        run: python3 dev/check-links.py
+      - name: The release policy decides when a merge releases
+        run: python3 dev/test_ship.py
+      - name: The guards (architecture, findability, ratchets)
+        run: <the command that runs your guard tests>
+      - name: Build, lint and test
+        run: <your build, lint and test commands>
+
+  # The slow checks only when code changed; skipped checks count as passing for the shipper.
+  heavy:
+    name: "<the slow matrix - packages, other platforms, fixtures>"
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - run: <...>
+
+  # Dependencies: a PREBUILT checker (not one compiled from source on every run: that was 181 of 193 seconds on the project this came from).
+  advisories:
+    name: licences and advisories
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: EmbarkStudios/cargo-deny-action@v2     # for Rust; use your ecosystem's prebuilt equivalent

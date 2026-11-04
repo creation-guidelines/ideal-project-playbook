@@ -1,0 +1,8 @@
+{
+  "top": 3,
+  "questions": [
+    {"question": "where is it said which kind of disk the program works with?", "answers": ["core/vocabulary/explain/basics.rs"]},
+    {"question": "where is a restore point put back, area by area?", "answers": ["core/going_back/points/putting_back.rs"]},
+    {"question": "what does the next cleanup remove?", "answers": ["core/keeping/limits.rs"]}
+  ]
+}
