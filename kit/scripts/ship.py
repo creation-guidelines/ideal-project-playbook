@@ -1,0 +1,322 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 grenudi
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Generalised from snapall's dev/ship.py: what was specific to that project is a setting (SHIP_* environment variables, below).
+
+"""Ship the current branch: push, open the pull request, wait for CI, merge, wait for main, release, verify the release.
+
+    GITHUB_TOKEN=... ship.py "refactor: what changed" [--body-file FILE] [--no-release | --release]
+    GITHUB_TOKEN=... ship.py --check            only verify the token and the repository
+
+Settings, all optional, as environment variables:
+    SHIP_BUDGET            seconds before it stops itself with exit code 75 (255)
+    SHIP_MIN_CHECKS        fewer checks than this is a pull request whose CI has not started (1)
+    SHIP_CI_WORKFLOW       the workflow of main that must pass before a release is considered ("CI")
+    SHIP_RELEASE_TITLE     the title of the release commit and of the release pull request ("chore: release")
+    SHIP_RELEASE_WORKFLOWS comma-separated workflows a release must pass ("Release")
+    SHIP_PUBLISHING        comma-separated path prefixes whose change releases at once ("packaging/,.github/workflows/release")
+    SHIP_RELEASE_AFTER     changes waiting that make a release (10)
+    SHIP_VERIFY_COMMAND    a shell command run after a release is verified; its output is shown (none)
+
+It keeps no state of its own: every step reads GitHub, so it can be stopped and run again, from any session, and carries on
+from where the pull request, main or the release already is. A tool call does not last long and a process started in one does not
+outlive it, so run it in the foreground. It stops itself after SHIP_BUDGET seconds (255 by default) with exit code 75, "still
+waiting": run the same command again, as often as it takes, until it exits 0 (done) or 1 (something failed, and it says what).
+
+Rules it keeps, so nobody has to remember them: it never runs on main, and only a feature branch is pushed (forced, so a rebased one can be shipped again); squash merge only, with the title as the commit subject; the pull request is merged only when
+every check passed (judged by the newest run of each check name); the release pull request is merged only after main's own CI passed;
+a job that failed only at a step that is the network or the runner's own setup (see KNOWN_RUNNER_FLAKES) is re-run once, and
+anything else that fails is reported with the tail of its log and stops everything.
+"""
+import json, os, re, subprocess, sys, time, urllib.error, urllib.request
+
+# steps whose failure is the network or the runner, not our code: the runner starting a job or a container. Add the name of a step
+# that only downloads (SHIP_RUNNER_FLAKES) once you have seen it fail for the network three times and made it retry for itself.
+KNOWN_RUNNER_FLAKES = ("Set up job", "Initialize containers", "Initialize job") + tuple(
+    f.strip() for f in os.environ.get("SHIP_RUNNER_FLAKES", "").split(",") if f.strip())
+RELEASE_WORKFLOWS = tuple(w.strip() for w in os.environ.get("SHIP_RELEASE_WORKFLOWS", "Release").split(",") if w.strip())
+RELEASE_TITLE = os.environ.get("SHIP_RELEASE_TITLE", "chore: release")
+CI_WORKFLOW = os.environ.get("SHIP_CI_WORKFLOW", "CI")
+
+# A release per merge costs minutes of waiting and a version number nobody asked for, and proves little that CI does not
+# prove on every pull request. The release pull request already collects changes by itself, so a change does not release
+# unless: enough have piled up, the oldest has waited too long, it touches how releases are published (the one thing CI
+# cannot prove), or a release was asked for.
+RELEASE_AFTER = int(os.environ.get("SHIP_RELEASE_AFTER", "10"))
+RELEASE_AFTER_DAYS = 7
+PUBLISHING = tuple(p.strip() for p in os.environ.get("SHIP_PUBLISHING", "packaging/,.github/workflows/release").split(",") if p.strip())
+
+
+def why_release(entries, oldest_age_days, files, flags):
+    """The reason to release now, or None to let the change wait with the others."""
+    if "--release" in flags:
+        return "a release was asked for"
+    if any(name.startswith(PUBLISHING) for name in files):
+        return "it touches how releases are published, which only a release proves"
+    if entries >= RELEASE_AFTER:
+        return f"{entries} changes are waiting"
+    if entries and oldest_age_days >= RELEASE_AFTER_DAYS:
+        return f"the oldest waiting change is {oldest_age_days:.0f} days old"
+    return None
+
+
+def unreleased():
+    """The changes on main since the last release that make a changelog entry, and when the oldest was made."""
+    entries, oldest = 0, None
+    for commit in api("commits?sha=main&per_page=100"):
+        title = commit["commit"]["message"].split("\n")[0]
+        if title.startswith(RELEASE_TITLE):
+            break
+        if title.startswith(("chore", "docs")):
+            continue
+        entries += 1
+        oldest = commit["commit"]["committer"]["date"]
+    return entries, oldest
+# Fewer than this is a pull request whose CI has not started (or conflicts). Set it below the number of checks of your smallest pull
+# request (a documents-only one, if a job narrows the checks for those): the wait for no pending check that stays so for two looks
+# is what says the rest have arrived.
+MIN_CHECKS = int(os.environ.get("SHIP_MIN_CHECKS", "1"))
+# A tool call does not last, and a process started in one does not outlive it. So this runs in the foreground, stops
+# itself before the call is cut off, and is run again: every step reads GitHub, so it carries on where it was.
+BUDGET_SECONDS = int(os.environ.get("SHIP_BUDGET", "255"))
+STARTED = time.time()
+STILL_WAITING = 75
+
+def nap(seconds):
+    if time.time() + seconds - STARTED > BUDGET_SECONDS:
+        say("still waiting: run me again, I carry on from where GitHub is")
+        sys.exit(STILL_WAITING)
+    time.sleep(seconds)
+
+def remote():
+    url = subprocess.run(["git", "remote", "get-url", "origin"], capture_output=True, text=True).stdout.strip()
+    m = re.search(r"github\.com[:/]([^/]+/[^/.]+)", url)
+    if not m:
+        sys.exit(f"cannot read a GitHub repository from the origin remote ({url!r}): run this inside a clone")
+    return m.group(1)
+
+REPO = remote()
+
+def token():
+    import os
+    t = os.environ.get("GITHUB_TOKEN")
+    if not t:
+        sys.exit("GITHUB_TOKEN is not set")
+    return t
+
+def api(path, data=None, method=None):
+    request = urllib.request.Request(f"https://api.github.com/repos/{REPO}" + (f"/{path}" if path else ""), data=json.dumps(data).encode() if data is not None else None,
+        method=method, headers={"Authorization": f"Bearer {token()}", "Accept": "application/vnd.github+json", "Content-Type": "application/json"})
+    try:
+        body = urllib.request.urlopen(request, timeout=60).read()
+        return json.loads(body) if body else {}
+    except urllib.error.HTTPError as error:
+        return {"HTTP": error.code, "message": error.read().decode()[:300]}
+
+def say(text):
+    print(time.strftime("%H:%M:%S"), text, flush=True)
+
+def sh(*args):
+    return subprocess.run(list(args), capture_output=True, text=True)
+
+def newest_checks(sha):
+    latest = {}
+    for run in sorted(api(f"commits/{sha}/check-runs?per_page=100").get("check_runs", []), key=lambda r: r["started_at"] or ""):
+        latest[run["name"]] = run
+    return latest
+
+def log_tail(job_id, lines=25):
+    out = sh("curl", "-sL", "-H", f"Authorization: Bearer {token()}", "-H", "Accept: application/vnd.github+json", f"https://api.github.com/repos/{REPO}/actions/jobs/{job_id}/logs").stdout
+    rows = [re.sub(r"^\S+Z ", "", row) for row in out.split("\n") if row.strip()]
+    interesting = [i for i, row in enumerate(rows) if re.search(r"##\[error\]|error(\[|:)|FAILED|panicked|Error:", row)]
+    start = max(0, (interesting[0] if interesting else len(rows) - lines) - 4)
+    return "\n".join("    " + row[:170] for row in rows[start:start + lines])
+
+def rerun_failed_runner_flakes(sha, names):
+    """Re-run, once, the jobs that failed in the runner's setup. Returns True if something was re-run."""
+    reran = False
+    runs = {}
+    for name in names:
+        check = newest_checks(sha)[name]
+        job = api(f"actions/jobs/{check['id']}")
+        steps = [s["name"] for s in job.get("steps", []) if s.get("conclusion") == "failure"]
+        if steps and all(any(flake in s for flake in KNOWN_RUNNER_FLAKES) for s in steps) and job.get("run_attempt", 1) == 1:
+            run_id = job["run_id"]
+            if run_id not in runs:
+                runs[run_id] = api(f"actions/runs/{run_id}/rerun-failed-jobs", {}, "POST")
+                say(f"re-running {name}: it failed at `{steps[0]}`, a network or runner step and not our code")
+            reran = True
+    return reran
+
+def wait_for_checks(sha, what, number=None):
+    stable = 0
+    reran = False
+    empty = 0
+    while True:
+        checks = newest_checks(sha)
+        empty = empty + 1 if not checks else 0
+        if number and empty >= 3:
+            # GitHub starts no CI for a pull request that conflicts with main, which looks exactly like waiting
+            pr = api(f"pulls/{number}")
+            if pr.get("mergeable") is False or pr.get("mergeable_state") == "dirty":
+                sys.exit(f"#{number} conflicts with main, so GitHub runs no checks: rebase it onto origin/main and run me again")
+        pending = [n for n, c in checks.items() if c["status"] != "completed"]
+        failed = [n for n, c in checks.items() if c["status"] == "completed" and c["conclusion"] not in ("success", "skipped", "neutral")]
+        say(f"{what}: {len(checks)} checks, {len(pending)} pending, {len(failed)} failed")
+        if failed and not pending:
+            if not reran and rerun_failed_runner_flakes(sha, failed):
+                reran = True
+                nap(30)
+                continue
+            for name in failed:
+                say(f"FAILED {name}: {checks[name]['html_url']}")
+                print(log_tail(checks[name]["id"]), flush=True)
+            sys.exit(1)
+        if not pending and len(checks) >= MIN_CHECKS:
+            stable += 1
+            if stable >= 2:
+                return
+        else:
+            stable = 0
+        nap(25)
+
+def wait_for_workflow_run(sha, name, limit=1500):
+    deadline = time.time() + limit
+    while time.time() < deadline:
+        runs = [r for r in api(f"actions/runs?head_sha={sha}&per_page=50").get("workflow_runs", []) if r["name"] == name]
+        if runs and runs[0]["status"] == "completed":
+            return runs[0]
+        nap(20)
+    sys.exit(f"{name} did not finish for {sha[:7]}")
+
+def verify_release(sha):
+    for attempt in (1, 2):
+        say(f"release {sha[:7]}: waiting for {', '.join(RELEASE_WORKFLOWS)}")
+        runs = {name: wait_for_workflow_run(sha, name) for name in RELEASE_WORKFLOWS}
+        bad = {n: r for n, r in runs.items() if r["conclusion"] != "success"}
+        if not bad:
+            break
+        if attempt == 2:
+            break
+        for name, run in bad.items():
+            jobs = api(f"actions/runs/{run['id']}/jobs?per_page=50").get("jobs", [])
+            flaky = [j for j in jobs if j.get("conclusion") == "failure" and all(any(f in s["name"] for f in KNOWN_RUNNER_FLAKES) for s in j["steps"] if s.get("conclusion") == "failure")]
+            if flaky and len(flaky) == len([j for j in jobs if j.get("conclusion") == "failure"]):
+                say(f"re-running {name}: it failed at a network or runner step and not our code")
+                api(f"actions/runs/{run['id']}/rerun-failed-jobs", {}, "POST")
+                nap(40)
+            else:
+                say(f"{name} failed for a reason of ours: {run['html_url']}")
+                sys.exit(1)
+    for name in RELEASE_WORKFLOWS:
+        run = api(f"actions/runs/{runs[name]['id']}")
+        jobs = api(f"actions/runs/{run['id']}/jobs?per_page=50&filter=latest").get("jobs", [])
+        counts = {}
+        for job in jobs:
+            counts[job["conclusion"] or job["status"]] = counts.get(job["conclusion"] or job["status"], 0) + 1
+        say(f"   {name:21} {run['conclusion']:8} attempt {run['run_attempt']} {counts}")
+    if any(r["conclusion"] != "success" for r in (api(f"actions/runs/{r['id']}") for r in runs.values())):
+        sys.exit(1)
+    after = os.environ.get("SHIP_VERIFY_COMMAND")
+    shown = sh("bash", "-c", after).stdout.strip() if after else ""
+    say("released and verified" + (f"; {shown}" if shown else ""))
+
+def main(argv):
+    if "--check" in argv:
+        info = api("")
+        say(f"repository {REPO}: {info.get('full_name', info)}")
+        return
+    flags = {a for a in argv if a.startswith("--")}
+    positional = [a for a in argv if not a.startswith("--")]
+    body_file = argv[argv.index("--body-file") + 1] if "--body-file" in argv else None
+    if body_file:
+        positional = [a for a in positional if a != body_file]
+    title = positional[0] if positional else sh("git", "log", "-1", "--format=%s").stdout.strip()
+    branch = sh("git", "rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+    if branch == "main":
+        sys.exit("on main: ship a branch")
+    owner = REPO.split("/")[0]
+    found = api(f"pulls?head={owner}:{branch}&state=all")
+    pr = found[0] if isinstance(found, list) and found else None
+    if pr is None:
+        sh("git", "push", "-q", "--force", f"https://x-access-token:{token()}@github.com/{REPO}.git", branch)
+        body = open(body_file).read() if body_file else sh("git", "log", "-1", "--format=%b").stdout
+        pr = api("pulls", {"title": title, "head": branch, "base": "main", "body": body}, "POST")
+        if "number" not in pr:
+            sys.exit(f"could not open the pull request: {pr}")
+        say(f"opened pull request #{pr['number']}")
+    else:
+        say(f"pull request #{pr['number']} is {pr['state']}{' (merged)' if pr.get('merged_at') else ''}")
+        if pr["state"] == "open":
+            sh("git", "push", "-q", "--force", f"https://x-access-token:{token()}@github.com/{REPO}.git", branch)
+    number = pr["number"]
+    if not pr.get("merged_at"):
+        nap(15)
+        sha = api(f"pulls/{number}")["head"]["sha"]
+        wait_for_checks(sha, f"#{number}", number)
+        say("all checks passed: merging (squash)")
+        merged = api(f"pulls/{number}/merge", {"merge_method": "squash", "commit_title": f"{title} (#{number})"}, "PUT")
+        if not merged.get("merged"):
+            sys.exit(f"merge refused: {merged}")
+        merge_sha = merged["sha"]
+    else:
+        merge_sha = pr["merge_commit_sha"]
+    say(f"merged as {merge_sha[:7]}; waiting for main's own CI")
+    deadline = time.time() + 1500
+    ci = None
+    while time.time() < deadline:
+        runs = [r for r in api(f"actions/runs?head_sha={merge_sha}&per_page=30").get("workflow_runs", []) if r["name"] == CI_WORKFLOW]
+        if runs and runs[0]["status"] == "completed":
+            ci = runs[0]
+            break
+        nap(25)
+    if not ci or ci["conclusion"] != "success":
+        sys.exit(f"main's CI did not pass: {ci and ci['html_url']}")
+    say("main is green")
+    if "--no-release" in flags:
+        return
+    entries, oldest = unreleased()
+    age = (time.time() - time.mktime(time.strptime(oldest, "%Y-%m-%dT%H:%M:%SZ"))) / 86400 if oldest else 0
+    listed = api(f"pulls/{number}/files?per_page=100")
+    files = [f["filename"] for f in listed] if isinstance(listed, list) else []
+    reason = why_release(entries, age, files, flags)
+    if not reason:
+        say(f"release deferred: {entries} of {RELEASE_AFTER} changes are waiting; the release pull request keeps collecting them (--release to release now)")
+        return
+    say(f"releasing: {reason}")
+    # the release pull request is updated by the Release workflow after each push to main: wait for it to hold this change
+    wait_for_workflow_run(merge_sha, "Release")
+    # a release may already be done (merged in an earlier run) or still to be merged: GitHub says which
+    def release_commit_after(sha):
+        for commit in api("commits?sha=main&per_page=20"):
+            if commit["sha"] == sha:
+                return None
+            if commit["commit"]["message"].startswith(RELEASE_TITLE):
+                return commit["sha"]
+        return None
+    released = release_commit_after(merge_sha)
+    if not released:
+        release = None
+        for _ in range(12):
+            open_prs = api("pulls?state=open&per_page=20")
+            release = next((p for p in open_prs if p["title"].startswith(RELEASE_TITLE)), None) if isinstance(open_prs, list) else None
+            if release:
+                break
+            released = release_commit_after(merge_sha)
+            if released:
+                break
+            nap(15)
+        if release:
+            merged = api(f"pulls/{release['number']}/merge", {"merge_method": "squash", "commit_title": f"{RELEASE_TITLE} (#{release['number']})"}, "PUT")
+            if not merged.get("merged"):
+                sys.exit(f"release merge refused: {merged}")
+            released = merged["sha"]
+    if not released:
+        say("no release pull request was opened: this change does not release")
+        return
+    verify_release(released)
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
