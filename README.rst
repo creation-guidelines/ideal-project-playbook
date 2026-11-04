@@ -4,6 +4,8 @@ ideal-project-playbook
 How to run any software project to an ideal of **clarity and elegance** with an agent: the idea, the loop, the guards, the automation, and the mistakes that
 taught each rule. It was learned on one real project and is written so that you can hand it to an agent and start another.
 
+Read it as a site: **https://creation-guidelines.github.io/ideal-project-playbook/** (built from the same files by ``tools/build_site.py``).
+
 Use it in one step
 ------------------
 

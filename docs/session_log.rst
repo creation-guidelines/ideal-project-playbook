@@ -319,3 +319,23 @@ Considered
 
 Rejected
     A copy hard-codes the first project's names, paths and release workflows, so the second project would start by editing a script it did not write; settings and options keep one script.
+
+----
+
+
+.. _the-site-was-missing:
+
+There was no site, and I had said there would be
+------------------------------------------------
+
+Entry date
+    2026-11-03
+
+Done
+    Added a static-site builder (tools/build_site.py) that turns every .rst file into a page with docutils, rewrites links between pages, and fails the build on a link to a file that is not a page or an anchor that is not on its page; 21 pages and 99 links checked. It has seven tests, including that a broken link stops the build, and the anchor check was shown to be needed by switching it off. A workflow deploys it to GitHub Pages on every push to main, and CI builds it on every pull request.
+
+Considered
+    Sphinx, which adds a theme, a navigation tree and search.
+
+Rejected
+    Sphinx would read the generated pages' plain links to .rst files as external, broken links, and adds a dependency and a configuration to maintain; docutils alone is the reference implementation and needs only a link rewrite. It stays an option if search is ever wanted.
