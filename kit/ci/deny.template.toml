@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2026 grenudi
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# What `cargo deny check licenses bans sources advisories` enforces in CI: replace the licence list with what YOUR project can accept.
+# The advisories policy below was proven locally against a known-bad project (a dependency on a version with a known vulnerability) before it replaced
+# the audit that compiled itself on every run: it failed there and passed on the repository.
+
+[licenses]
+allow = [
+    "GPL-3.0-or-later",
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "BSL-1.0",
+    "ISC",
+    "Unicode-3.0",
+    "Unlicense",
+    "Zlib",
+    "CC0-1.0",
+    "0BSD",
+]
+
+[bans]
+multiple-versions = "warn"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+
+[advisories]
+version = 2
+# The RustSec database. A vulnerability fails the check, as it did under cargo-audit, which it replaces (that compiled itself
+# from source on every run: 181 seconds of a 193 second CI run). An unmaintained crate fails only when your project depends on it
+# directly: one that arrives through another dependency is nothing this project can act on. A yanked version is a warning.
+unmaintained = "workspace"
+yanked = "warn"

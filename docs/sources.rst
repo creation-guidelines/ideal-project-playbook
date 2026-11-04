@@ -36,7 +36,7 @@ Year
     2026
 
 Cited by
-    `Every layer is the top of the layers beneath it <concepts.rst#top-of-the-layers-beneath>`__, `Each layer is a small language <concepts.rst#small-languages>`__
+    `Every layer is the top of the layers beneath it <concepts.rst#top-of-the-layers-beneath>`__, `Each layer is a small language <concepts.rst#small-languages>`__, `Two faces: what it is for, and a body in the words beneath <concepts.rst#two-faces>`__, `Names explain the program <concepts.rst#names-explain>`__
 
 
 .. _tad-engine-repo:
@@ -136,3 +136,39 @@ Author
 
 Cited by
     `State and plans live in the repository <concepts.rst#state-in-the-repo>`__
+
+
+.. _snapall-log:
+
+snapall development log: what was done, why, the evidence and the mistakes, newest first
+----------------------------------------------------------------------------------------
+
+Url
+    https://github.com/grenudi/snapall/blob/main/docs/development-log.md
+
+Author
+    grenudi
+
+Year
+    2026
+
+Cited by
+    `Two faces: what it is for, and a body in the words beneath <concepts.rst#two-faces>`__, `Names explain the program <concepts.rst#names-explain>`__, `A fact, a word or a rule lives in one place <concepts.rst#one-fact-one-place>`__, `The stranger test <concepts.rst#stranger-test>`__, `Prove every guard bites <concepts.rst#prove-the-guard-bites>`__, `Check the property, not the symptom <concepts.rst#check-the-property>`__, `Measure before you claim <concepts.rst#measure-before-and-after>`__, `Pin the real output <concepts.rst#golden-output>`__, `Automate what you do twice by hand <concepts.rst#automate-repeated-hand-work>`__, `Judge CI by the newest run of each check <concepts.rst#newest-run-counts>`__, `Measure the CI before optimising it <concepts.rst#measure-the-ci-first>`__, `Remove a race by construction <concepts.rst#race-by-construction>`__, `Retire a word with a guard <concepts.rst#retire-words>`__, `Published identities are not renamed for a word <concepts.rst#published-names-stay>`__, `Report in plain words, at the big picture <concepts.rst#plain-reports>`__, `Decide, following the canon and the project's interest <concepts.rst#decide-yourself>`__, `Search by shape, and read all of the results <concepts.rst#search-by-shape>`__, `Say what to do next, once <concepts.rst#say-what-to-do-next>`__
+
+
+.. _playbook-lessons:
+
+This playbook's lessons chapter: each mistake, and the rule it became
+---------------------------------------------------------------------
+
+Url
+    https://github.com/creation-guidelines/ideal-project-playbook/blob/main/playbook/08-lessons.rst
+
+Author
+    creation-guidelines
+
+Year
+    2026
+
+Cited by
+    `Look at what people will see <concepts.rst#look-at-what-people-see>`__

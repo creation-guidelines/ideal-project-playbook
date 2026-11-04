@@ -339,3 +339,23 @@ Considered
 
 Rejected
     Sphinx would read the generated pages' plain links to .rst files as external, broken links, and adds a dependency and a configuration to maintain; docutils alone is the reference implementation and needs only a link rewrite. It stays an option if search is ever wanted.
+
+----
+
+
+.. _the-audit:
+
+An audit of this repository against everything done in the chat
+---------------------------------------------------------------
+
+Entry date
+    2026-11-04
+
+Done
+    Compared the template's own agent instructions with this repository's: the data rules had lost their reasons, the recipes and the rationale were gone, and the rule that a factual claim needs a source was not enforced (18 of 34 practices cited nothing). Restored them, and added an invariant that every practice cites a source. Compared the kit with the work it came from and found it missing: the catalogue of guards as functions and the architecture guard that wires them up, structure metrics, a screen driver for terminal programs, the lexer-based splitter and renamer, the starting files (agent notes, idea page, log, plan, pull-request body), and CI, release and dependency configuration with the measured levers. All added, with tests; each generalised tool was compared with its original on the project it came from, and every difference was explained.
+
+Considered
+    Linking to snapall's files for the missing pieces.
+
+Rejected
+    A reader of the playbook who wants to start a project should not have to read another project to find the templates; links go stale and the playbook must stand alone.

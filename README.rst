@@ -31,10 +31,10 @@ What is here
     The document to hand to an agent.
 ``playbook/``
     The reasons and the stories, in eleven chapters (start at `playbook/index.rst <playbook/index.rst>`__).
-``kit/guards/``
-    Language-neutral guards with tests: the ratchet, the outline from first sentences, the findability ranking.
-``kit/scripts/``
-    The shipper, the gate skeleton, the scans, the CI timing report, and the release-policy test.
+``kit/``
+    The tested tools, templates and CI configuration (map: ``kit/README.rst``): the guards (ratchet, outline, findability ranking, a catalogue of architecture rules), the shipper and its
+    release policy, the gate, golden output, a screen driver for terminal programs, structure metrics, the scans, the starting files for a project, CI and release configuration, and the
+    two tools that rewrite code (a splitter and a lexer-based renamer).
 ``docs/``
     The same knowledge as **data**, rendered: 33 practices and how they relate (``docs/concepts.rst``), the decisions with what was considered and rejected (``docs/session_log.rst``),
     sources, and the backlog.

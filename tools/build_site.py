@@ -20,7 +20,7 @@ import sys
 from docutils.core import publish_parts
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NAV = [("Home", "README.rst"), ("Agent instructions", "kit/AGENT-INSTRUCTIONS.rst"), ("Playbook", "playbook/index.rst"),
+NAV = [("Home", "README.rst"), ("Agent instructions", "kit/AGENT-INSTRUCTIONS.rst"), ("Playbook", "playbook/index.rst"), ("Kit", "kit/README.rst"),
        ("Practices", "docs/concepts.rst"), ("Decisions", "docs/session_log.rst"), ("Sources", "docs/sources.rst"), ("Backlog", "docs/backlog.rst")]
 RAW = ["kit/AGENT-INSTRUCTIONS.rst"]
 SITE = "ideal-project-playbook"
@@ -52,7 +52,7 @@ footer { max-width: 46rem; margin: 0 auto; padding: 1rem 1.2rem 3rem; border-top
 
 def sources():
     found = [f for f in glob.glob(os.path.join(ROOT, "**", "*.rst"), recursive=True)
-             if not any(part in f for part in ("/.git/", "/node_modules/", "/_site/", "/.tad/"))]
+             if not any(part in f for part in ("/.git/", "/node_modules/", "/_site/", "/.tad/", "/kit/templates/"))]
     return sorted(os.path.relpath(f, ROOT) for f in found)
 
 

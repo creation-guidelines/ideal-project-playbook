@@ -1,0 +1,16 @@
+# Releases are BATCHED, not one per merge (playbook/06-ci-and-releases.rst). release-plz keeps ONE release pull request open and updates it with every
+# merge; dev/ship.py decides when to merge it (about ten changes that make a changelog entry, seven days, a change to packaging or the release workflows,
+# or --release). Nothing here releases on its own schedule.
+[workspace]
+changelog_config = "cliff.toml"
+dependencies_update = false
+# If you are not publishing to a registry:
+publish = false
+git_only = true
+git_tag_enable = true
+git_release_enable = false
+
+# One GitHub release for the product, not one per internal package.
+# [[package]]
+# name = "<your product>"
+# git_release_enable = true

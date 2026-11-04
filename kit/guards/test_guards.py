@@ -203,7 +203,7 @@ def test_an_outline_that_is_too_small_has_stopped_being_read():
 
 def test_the_repository_answers_questions_about_its_own_scripts():
     """The dogfood: the outline of this repository's kit and tools, and real questions about them."""
-    modules = outline.build({"scripts": os.path.join(ROOT, "kit", "scripts"), "guards": HERE, "tools": os.path.join(ROOT, "tools")})
+    modules = outline.build({"scripts": os.path.join(ROOT, "kit", "scripts"), "guards": HERE, "tools": os.path.join(ROOT, "tools"), "rust": os.path.join(ROOT, "kit", "rust")})
     assert all(purpose for _, purpose in modules), [name for name, p in modules if not p]
     questions = json.load(open(os.path.join(HERE, "self-questions.json"), encoding="utf-8"))
     print("    " + findability.run(outline.render(modules), questions, min_modules=10))

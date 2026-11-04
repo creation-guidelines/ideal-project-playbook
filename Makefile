@@ -21,6 +21,10 @@ test:             ## tests for .tad/ (the engine), kit/guards and the release po
 	python3 .tad/tests/test_dc.py
 	python3 .tad/tests/test_render.py
 	python3 kit/guards/test_guards.py
+	python3 kit/guards/test_rules.py
+	python3 kit/guards/architecture.py
+	python3 kit/scripts/test_structure_metrics.py
+	python3 kit/scripts/test_screens.py
 	python3 kit/scripts/test_ship.py
 	python3 tools/test_site.py
 rst:              ## every .rst file is valid and every path a document names exists

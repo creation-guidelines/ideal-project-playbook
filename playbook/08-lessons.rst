@@ -102,3 +102,15 @@ A claim about a platform that I had not checked
 A tool that assumed its own repository
     The first test of the site builder, run against a minimal repository, crashed because it assumed the agent instructions existed. *Taught:* test a tool on a repository that is not yours as soon as it exists; its first assumption is its first bug.
 
+A tool generalised twice with two different counts
+    The generalised structure-metrics script reported a different huddled-file range and a different count of long functions than the original. Each difference had a cause that a controlled experiment found: an inclusive
+    range that should stop at 299, and a brace counter that was fooled by braces in strings and comments (so it was *more* correct than the original, by a constant). *Taught:* explain every difference between a
+    general tool and the original, and say in the tool which one is the deliberate one.
+
+A template that did not parse
+    A placeholder in the CI template contained a colon, which made the YAML invalid, so a copied template would have been broken from the start. *Taught:* parse every template; a template is code.
+
+A quoted file that is not a file
+    The path check flagged the kit's own map, which named files relative to the folder it described. *Taught:* in a document a path is the full path, always; and templates, which name the files of a project that does not exist yet,
+    are exempt from the check by name, visibly.
+
