@@ -1,0 +1,14 @@
+# This repository's mark: how it fits the Open Commons Observatory's picture.
+schema = 1
+
+[project]
+id = "creation-guidelines/ideal-project-playbook"
+name = "The ideal project playbook: how a project is made ideal"
+title = "Playbook"
+kind = "canon"
+parent = "open-commons-observatory"
+
+[exports]
+concepts = "data/concepts.json"
+backlog = "data/backlog.json"
+session_log = "data/session_log.json"
