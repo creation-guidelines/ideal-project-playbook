@@ -427,3 +427,23 @@ Entry date
 
 Done
     The playbook is the first repository on tad in Rust: tables.toml (the tables and the rules across them) is the authority, tad is installed from its pinned release with its checksum checked, and the vendored .tad copy, schema.sql, load.sql and checks/\*.sql are gone. AGENTS.rst got simpler. The switch's commit said the documents would change; none did - the older renderer wrote the same reStructuredText for this repository's shapes.
+
+----
+
+
+.. _2026-11-11-one-word-summary:
+
+A concept's text is its summary
+-------------------------------
+
+Entry date
+    2026-11-11
+
+Done
+    The concepts table's statement field is now summary, the word the shared language (ocoeco's language.toml) and twenty other projects use; the observatory showed this repository's concepts without their text because of it. Found by checking every project against the shared language.
+
+Considered
+    Teaching the shared language a second word for the same thing.
+
+Rejected
+    That: one role, one word.
