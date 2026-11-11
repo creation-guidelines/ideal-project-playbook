@@ -14,7 +14,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DIRS = ("kit/", "playbook/", "tools/", "bin/", "checks/", "data/", ".tad/", ".github/", "docs/")
+DIRS = ("kit/", "playbook/", "tools/", "bin/", "data/", ".github/", "docs/")
 EXTENSIONS = (".rst", ".py", ".sh", ".json", ".sql", ".yml", ".yaml", ".md", ".txt", ".js")
 LITERAL = re.compile(r"(?<!`)``([^`\n]+)``(?!`)")
 

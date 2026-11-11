@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: pip install -r .tad/requirements.txt -r .tad/requirements-test.txt -r kit/requirements.txt
+      - run: pip install -r tools/requirements.txt -r kit/requirements.txt
+      - name: tad, from its pinned release
+        run: TAD_DEST="$HOME/.local/bin" ./bin/install-tad.sh && echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Tooling tests
         run: make test
       - name: Documents are valid reStructuredText and name only real paths

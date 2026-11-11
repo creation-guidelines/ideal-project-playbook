@@ -1,6 +1,5 @@
-# creation-guidelines/ideal-project-playbook's tables, declared as data (tad). Generated from data/schema.sql by tad declare; the rules
-# across tables are written by hand from checks/*.sql. The authority stays schema.sql and checks/
-# until the switch to tad in Rust; both are proven to give the same verdicts.
+# The tables of this repository, declared as data: the authority on what data/ may hold, checked by
+# tad (creation-guidelines/tad-engine) on every change. First generated on 2026-11-11 from the schema it replaced.
 [tables.backlog]
 key = ["id"]
 
