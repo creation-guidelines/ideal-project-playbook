@@ -149,7 +149,7 @@ type = "string"
 name = "year"
 type = "integer"
 
-# Rules across tables (from checks/*.sql, written by hand; proven against them)
+# Rules across tables (written by hand from the SQL checks they replaced; proven to give the same verdicts)
 [[rules.unique_ids]]
 tables = ["concepts", "backlog", "session_log"]
 

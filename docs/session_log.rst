@@ -413,3 +413,17 @@ Entry date
 
 Done
     From the author: wording is part of perfection. A practice of the ideal project, on the ubiquitous language, Orwell and plain-language guidelines; in ocoeco a vocabulary entry names the decision that chose it.
+
+----
+
+
+.. _2026-11-11-tad-in-rust:
+
+tad in Rust replaces the vendored Python engine
+-----------------------------------------------
+
+Entry date
+    2026-11-11
+
+Done
+    The playbook is the first repository on tad in Rust: tables.toml (the tables and the rules across them) is the authority, tad is installed from its pinned release with its checksum checked, and the vendored .tad copy, schema.sql, load.sql and checks/\*.sql are gone. AGENTS.rst got simpler. The switch's commit said the documents would change; none did - the older renderer wrote the same reStructuredText for this repository's shapes.
