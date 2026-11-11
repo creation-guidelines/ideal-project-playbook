@@ -379,3 +379,23 @@ Considered
 
 Rejected
     Every test ran on the project the tools came from; a tool that has not been run elsewhere has not been tested for being general.
+
+----
+
+
+.. _2026-11-11-look-around-first:
+
+Look around first
+-----------------
+
+Entry date
+    2026-11-11
+
+Done
+    A practice for agents and humans alike, from the author: no action is complete without a clear look at what is and why. Rests on Chesterton's fence, genchi genbutsu and the OODA loop; in ocoeco it is the research table, cited by decisions and shown beside steps.
+
+Considered
+    Leaving it to the observatory's agent practices alone.
+
+Rejected
+    That: it is how an ideal project works for anyone, not only for agents.
