@@ -25,7 +25,7 @@ jobs:
       - run: pip install -r tools/requirements.txt
       - name: Build the site (fails on a broken link)
         run: python3 tools/build_site.py
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
