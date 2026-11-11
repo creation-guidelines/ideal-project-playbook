@@ -1,25 +1,20 @@
-# Thin entry point. Everything it calls lives in .tad/ (the engine); see .tad/README.md.
+# Thin entry point. The data engine is tad (creation-guidelines/tad-engine), a released Rust tool; tables.toml declares the data.
 SHELL := /bin/bash
-DC = python3 .tad/tools/dc.py
-# The format of the rendered pages: md (the default), rst, or both as md,rst. See .tad/README.md.
+TAD ?= tad
+# The format of the rendered pages: md (the default), rst, or both as md,rst.
 export DOCS_FORMAT ?= rst
 
-.PHONY: setup check checks canon render sql test rst site verify
-setup:            ## install pinned DuckDB + Miller
-	./.tad/bootstrap.sh
-check:            ## key guard: unknown or vanished JSON keys in data/
-	$(DC) check
-checks:           ## invariant queries in checks/*.sql
-	$(DC) checks
-canon:            ## import -> validate -> canonical export of data/
-	$(DC) canon
+.PHONY: setup check canon render test rst site verify
+setup:            ## install tad (its pinned release) and the tools' Python packages
+	./bin/install-tad.sh
+	pip install -r tools/requirements.txt -r kit/requirements.txt
+check:            ## every row and every rule across tables (tables.toml)
+	$(TAD) check
+canon:            ## rewrite data/ in canonical form (only when it checks out)
+	$(TAD) canon
 render:           ## data/ -> docs/ (DOCS_FORMAT=md|rst|md,rst)
-	python3 .tad/tools/render.py
-sql:              ## make sql Q="UPDATE ...; SELECT ..."
-	$(DC) sql "$(Q)"
-test:             ## tests for .tad/ (the engine), kit/guards and the release policy in kit/scripts
-	python3 .tad/tests/test_dc.py
-	python3 .tad/tests/test_render.py
+	$(TAD) render
+test:             ## tests for kit/guards and the release policy in kit/scripts
 	python3 kit/guards/test_guards.py
 	python3 kit/guards/test_rules.py
 	python3 kit/guards/architecture.py
@@ -33,9 +28,9 @@ rst:              ## every .rst file is valid and every path a document names ex
 	python3 tools/check_paths.py
 site:             ## build the GitHub Pages site into _site/ (fails on a broken link)
 	python3 tools/build_site.py
-verify: check checks   ## what CI runs: data is valid and canonical, docs are fresh
+verify: check   ## what CI runs: data is valid and canonical, docs are fresh
 	@before="$$(find data docs -type f -print0 | sort -z | xargs -0 sha256sum)"; \
-	$(DC) canon && python3 .tad/tools/render.py; \
+	$(TAD) canon && $(TAD) render; \
 	after="$$(find data docs -type f -print0 | sort -z | xargs -0 sha256sum)"; \
 	if [ "$$before" != "$$after" ]; then \
 	  echo "data/ or docs/ was not canonical/fresh and has been rewritten. Review and commit:"; \

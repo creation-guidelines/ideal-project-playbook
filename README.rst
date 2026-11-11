@@ -49,8 +49,7 @@ its `architecture <https://github.com/grenudi/snapall/blob/main/crates/snapall/t
 How this repository is built
 ----------------------------
 
-It is generated from `text-as-data-template <https://github.com/creation-guidelines/text-as-data-template>`__: the knowledge is kept as plain versioned **data** (``data/``, DuckDB
-``EXPORT DATABASE`` JSON lines and SQL), the engine (``.tad/``, a git subrepo of `tad-engine <https://github.com/creation-guidelines/tad-engine>`__) guards and canonicalises it, and the pages in ``docs/``
+It is generated from `text-as-data-template <https://github.com/creation-guidelines/text-as-data-template>`__: the knowledge is kept as plain versioned **data** (``data/``, JSON lines declared by ``tables.toml``), the engine (`tad <https://github.com/creation-guidelines/tad-engine>`__, a released Rust tool) guards and canonicalises it, and the pages in ``docs/``
 are **rendered** from it. This repository renders **reStructuredText** (``DOCS_FORMAT=rst``), a format the engine learned for it; the prose in ``playbook/`` and ``kit/`` is hand-written ``.rst``.
 See ``AGENTS.rst`` for how to work in it.
 

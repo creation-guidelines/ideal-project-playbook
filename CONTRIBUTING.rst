@@ -10,7 +10,7 @@ Every commit on a pull request is linted (``commitlint``) against `Conventional 
 ``feat``
     New content: a practice, a chapter, a script, a table, a capability. Minor version.
 ``fix``
-    A correction: a wrong statement, a wrong constraint, a bug in a script or in ``.tad/``. Patch.
+    A correction: a wrong statement, a wrong constraint, a bug in a script or in tad (``tad-engine``). Patch.
 ``docs``
     Hand-written documents only (README, this file, AGENTS, the chapters). Not the generated ``docs/`` pages, which travel with the ``feat`` or ``fix`` that changed the data.
 ``refactor``, ``chore``, ``ci``, ``test``
