@@ -226,3 +226,57 @@ Year
 
 Cited by
     `Look around first <concepts.rst#look-around-first>`__
+
+
+.. _plain-language:
+
+Federal Plain Language Guidelines
+---------------------------------
+
+Url
+    https://www.plainlanguage.gov/guidelines/
+
+Author
+    Plain Language Action and Information Network
+
+Year
+    2011
+
+Cited by
+    `Words are decisions <concepts.rst#words-are-decisions>`__
+
+
+.. _orwell-plain-english:
+
+Politics and the English Language
+---------------------------------
+
+Url
+    https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/
+
+Author
+    George Orwell
+
+Year
+    1946
+
+Cited by
+    `Words are decisions <concepts.rst#words-are-decisions>`__
+
+
+.. _ddd-ubiquitous-language:
+
+Domain-Driven Design (the ubiquitous language)
+----------------------------------------------
+
+Url
+    https://www.domainlanguage.com/ddd/
+
+Author
+    Eric Evans
+
+Year
+    2003
+
+Cited by
+    `Words are decisions <concepts.rst#words-are-decisions>`__
