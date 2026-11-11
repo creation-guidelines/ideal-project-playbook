@@ -399,3 +399,17 @@ Considered
 
 Rejected
     That: it is how an ideal project works for anyone, not only for agents.
+
+----
+
+
+.. _2026-11-11-words-are-decisions:
+
+Words are decisions
+-------------------
+
+Entry date
+    2026-11-11
+
+Done
+    From the author: wording is part of perfection. A practice of the ideal project, on the ubiquitous language, Orwell and plain-language guidelines; in ocoeco a vocabulary entry names the decision that chose it.

@@ -675,3 +675,18 @@ Tags
 
 Sources
     `The OODA loop: observe, orient, decide, act <https://en.wikipedia.org/wiki/OODA_loop>`__, `The Thing: Why I Am a Catholic (the fence) <https://en.wikipedia.org/wiki/G._K._Chesterton#Chesterton's_fence>`__, `The Toyota Way (go and see) <https://en.wikipedia.org/wiki/Genchi_Genbutsu>`__
+
+
+.. _words-are-decisions:
+
+Words are decisions
+-------------------
+
+Statement
+    Choose each word as a decision: look at what others call the thing and what the reader already knows, prefer the plain word with one meaning, and keep the choice with the words rejected and the reasons. One language, used the same way in talk, in code and in documents.
+
+Tags
+    practice, language
+
+Sources
+    `Federal Plain Language Guidelines <https://www.plainlanguage.gov/guidelines/>`__, `Politics and the English Language <https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/>`__, `Domain-Driven Design (the ubiquitous language) <https://www.domainlanguage.com/ddd/>`__

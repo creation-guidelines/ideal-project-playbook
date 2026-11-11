@@ -4,6 +4,6 @@ Index
 =====
 
 - `Backlog <backlog.rst>`__: 6
-- `Concepts <concepts.rst>`__: 36
-- `Session Log <session_log.rst>`__: 20
-- `Sources <sources.rst>`__: 14
+- `Concepts <concepts.rst>`__: 37
+- `Session Log <session_log.rst>`__: 21
+- `Sources <sources.rst>`__: 17
