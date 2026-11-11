@@ -660,3 +660,18 @@ Relations
 
 Sources
     `This playbook's lessons chapter: each mistake, and the rule it became <https://github.com/creation-guidelines/ideal-project-playbook/blob/main/playbook/08-lessons.rst>`__
+
+
+.. _look-around-first:
+
+Look around first
+-----------------
+
+Statement
+    Before acting, take a clear look at the situation: what is, what we are dealing with, why it is so, and what others already learned. Keep what was found as research - the question, the findings, their sources - so the decisions that rest on it can cite it, and anyone can follow a step down to what it stands on.
+
+Tags
+    practice, research
+
+Sources
+    `The OODA loop: observe, orient, decide, act <https://en.wikipedia.org/wiki/OODA_loop>`__, `The Thing: Why I Am a Catholic (the fence) <https://en.wikipedia.org/wiki/G._K._Chesterton#Chesterton's_fence>`__, `The Toyota Way (go and see) <https://en.wikipedia.org/wiki/Genchi_Genbutsu>`__

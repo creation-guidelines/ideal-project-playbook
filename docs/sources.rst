@@ -172,3 +172,57 @@ Year
 
 Cited by
     `Look at what people will see <concepts.rst#look-at-what-people-see>`__
+
+
+.. _ooda-loop:
+
+The OODA loop: observe, orient, decide, act
+-------------------------------------------
+
+Url
+    https://en.wikipedia.org/wiki/OODA_loop
+
+Author
+    John Boyd
+
+Year
+    1976
+
+Cited by
+    `Look around first <concepts.rst#look-around-first>`__
+
+
+.. _chestertons-fence:
+
+The Thing: Why I Am a Catholic (the fence)
+------------------------------------------
+
+Url
+    https://en.wikipedia.org/wiki/G._K._Chesterton#Chesterton's_fence
+
+Author
+    G. K. Chesterton
+
+Year
+    1929
+
+Cited by
+    `Look around first <concepts.rst#look-around-first>`__
+
+
+.. _genchi-genbutsu:
+
+The Toyota Way (go and see)
+---------------------------
+
+Url
+    https://en.wikipedia.org/wiki/Genchi_Genbutsu
+
+Author
+    Jeffrey K. Liker
+
+Year
+    2004
+
+Cited by
+    `Look around first <concepts.rst#look-around-first>`__
