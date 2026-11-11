@@ -9,6 +9,7 @@ kind = "canon"
 parent = "open-commons-observatory"
 
 [exports]
+glimpses = "data/glimpses.json"
 concepts = "data/concepts.json"
 backlog = "data/backlog.json"
 session_log = "data/session_log.json"
