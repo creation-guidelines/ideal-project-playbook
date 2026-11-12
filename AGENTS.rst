@@ -57,6 +57,12 @@ Rename a field: ``mlr -I --ijsonl --ojsonl rename old,new data/<table>.json``, m
 
 Build and look at the site: ``make site`` writes ``_site/``. Look at the pages in a browser before relying on them: a structural check cannot see that a page looks wrong.
 
+Ask the data anything in SQL - joins, counts, what is missing - and change it the same way; a change through SQL is checked exactly as ``tad set`` is, and kept only if every rule still holds::
+
+    tad sql "SELECT status, count(*) FROM backlog GROUP BY status"
+    tad sql "UPDATE backlog SET status = 'done' WHERE id = 'an-id'"
+    tad sql --file a-query.sql --format csv
+
 Why it is built this way
 ------------------------
 
