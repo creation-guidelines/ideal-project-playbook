@@ -4,9 +4,10 @@ TAD ?= tad
 # The format of the rendered pages: md (the default), rst, or both as md,rst.
 export DOCS_FORMAT ?= rst
 
-.PHONY: setup check canon render test rst site verify
+.PHONY: setup check canon render test rst site sql verify
 setup:            ## install tad (its pinned release) and the tools' Python packages
 	./bin/install-tad.sh
+	$(TAD) engine
 	pip install -r tools/requirements.txt -r kit/requirements.txt
 check:            ## every row and every rule across tables (tables.toml)
 	$(TAD) check
@@ -28,6 +29,8 @@ rst:              ## every .rst file is valid and every path a document names ex
 	python3 tools/check_paths.py
 site:             ## build the GitHub Pages site into _site/ (fails on a broken link)
 	python3 tools/build_site.py
+sql:              ## ask the data in SQL: make sql Q="SELECT ..." (a change is kept only if every rule holds)
+	$(TAD) sql "$(Q)"
 verify: check   ## what CI runs: data is valid and canonical, docs are fresh
 	@before="$$(find data docs -type f -print0 | sort -z | xargs -0 sha256sum)"; \
 	$(TAD) canon && $(TAD) render; \
