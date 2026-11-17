@@ -106,6 +106,21 @@ emulated screen, and asserts on it. The same helper, imported without running th
 (``Tui().text()``), which is how the window's prompts and help were read as a newcomer would. (Box-drawing characters are multibyte: do not
 cut such output with a byte-oriented tool, or the stream is invalid.)
 
+The command line, declared once (argenv)
+----------------------------------------
+
+Every program's invocation surface - its arguments *and* the environment variables it reads - is declared
+once with `argenv <https://github.com/argenv-opencommons/argenv>`_, never parsed by hand or by a parser that
+keeps the surface in code alone (clap's derive included). One declaration per input is at once the parser,
+the typed accessor and the published contract, so they cannot drift; ``--log-level`` and ``APP_LOG_LEVEL`` are
+one setting with two doors, sharing a type, a domain, a default and a description. From the contract come,
+with nothing written by hand: completions for bash, zsh, fish and nushell (``PROGRAM completions SHELL``), a
+man page (``PROGRAM man``), and ``argenv lint``, which reports what is otherwise silent - an unknown flag, a
+misspelt variable, a value outside its domain, a required input missing. A program configured through a file
+of variables (an env file a service sources) declares those variables too. tad (``creation-guidelines/tad-engine``,
+0.6.0) is the worked example; its names that change per place (a place's own queries) are completed by asking
+the program at completion time, the rest from the static contract.
+
 The catalogue of guards, wired up
 ---------------------------------
 
