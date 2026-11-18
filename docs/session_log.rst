@@ -3,7 +3,7 @@
 Session Log
 ===========
 
-.. _the-idea-found:
+.. _2026-10-29-the-idea-found:
 
 The idea: every layer is the top of the layers beneath it
 ---------------------------------------------------------
@@ -23,7 +23,7 @@ Rejected
 ----
 
 
-.. _measure-the-goal-and-automate:
+.. _2026-10-29-measure-the-goal-and-automate:
 
 Measure the real goal, and automate the loop
 --------------------------------------------
@@ -43,7 +43,7 @@ Rejected
 ----
 
 
-.. _guards-and-ratchets:
+.. _2026-11-02-guards-and-ratchets:
 
 Rules found by reading become guards; debts become data
 -------------------------------------------------------
@@ -63,7 +63,7 @@ Rejected
 ----
 
 
-.. _the-rename-incident:
+.. _2026-11-02-the-rename-incident:
 
 The retired word, seventy-nine times, and a rename that lied
 ------------------------------------------------------------
@@ -83,7 +83,7 @@ Rejected
 ----
 
 
-.. _text-file-busy:
+.. _2026-11-02-text-file-busy:
 
 Main's CI failed on the race I had measured away
 ------------------------------------------------
@@ -103,7 +103,7 @@ Rejected
 ----
 
 
-.. _ci-measured-then-optimised:
+.. _2026-11-02-ci-measured-then-optimised:
 
 CI, measured first, then optimised
 ----------------------------------
@@ -123,7 +123,7 @@ Rejected
 ----
 
 
-.. _reads-and-scans:
+.. _2026-11-03-reads-and-scans:
 
 Seeded reads, and scans for what reading finds one at a time
 ------------------------------------------------------------
@@ -143,7 +143,7 @@ Rejected
 ----
 
 
-.. _the-idea-page:
+.. _2026-11-03-the-idea-page:
 
 Telling the reader the idea
 ---------------------------
@@ -163,7 +163,7 @@ Rejected
 ----
 
 
-.. _reading-by-use:
+.. _2026-11-03-reading-by-use:
 
 Using the program as a newcomer would
 -------------------------------------
@@ -183,7 +183,7 @@ Rejected
 ----
 
 
-.. _the-adapters-were-closer:
+.. _2026-11-03-the-adapters-were-closer:
 
 A guess written as fact, corrected
 ----------------------------------
@@ -203,7 +203,7 @@ Rejected
 ----
 
 
-.. _release-job-flake:
+.. _2026-11-03-release-job-flake:
 
 A release failed on GitHub's own error
 --------------------------------------
@@ -223,7 +223,7 @@ Rejected
 ----
 
 
-.. _releases-are-batched:
+.. _2026-11-03-releases-are-batched:
 
 Releases are batched, not one per merge
 ---------------------------------------
@@ -243,7 +243,7 @@ Rejected
 ----
 
 
-.. _hint-ignored-its-switch:
+.. _2026-11-03-hint-ignored-its-switch:
 
 The tip that ignored its own switch
 -----------------------------------
@@ -263,7 +263,7 @@ Rejected
 ----
 
 
-.. _the-invented-dates:
+.. _2026-11-03-the-invented-dates:
 
 The log's dates were invented
 -----------------------------
@@ -283,7 +283,7 @@ Rejected
 ----
 
 
-.. _engine-learns-rst:
+.. _2026-11-03-engine-learns-rst:
 
 The text-as-data engine learns reStructuredText
 -----------------------------------------------
@@ -303,7 +303,7 @@ Rejected
 ----
 
 
-.. _the-kit-is-tested-on-itself:
+.. _2026-11-03-the-kit-is-tested-on-itself:
 
 The kit is generalised, and tested on itself
 --------------------------------------------
@@ -323,7 +323,7 @@ Rejected
 ----
 
 
-.. _the-site-was-missing:
+.. _2026-11-03-the-site-was-missing:
 
 There was no site, and I had said there would be
 ------------------------------------------------
@@ -343,7 +343,7 @@ Rejected
 ----
 
 
-.. _the-audit:
+.. _2026-11-04-the-audit:
 
 An audit of this repository against everything done in the chat
 ---------------------------------------------------------------
@@ -363,7 +363,7 @@ Rejected
 ----
 
 
-.. _kit-on-a-fresh-repository:
+.. _2026-11-04-kit-on-a-fresh-repository:
 
 The kit, run on a repository that is not its origin
 ---------------------------------------------------
@@ -383,7 +383,7 @@ Rejected
 ----
 
 
-.. _2026-11-11-look-around-first:
+.. _2026-11-11-2026-11-11-look-around-first:
 
 Look around first
 -----------------
@@ -403,7 +403,7 @@ Rejected
 ----
 
 
-.. _2026-11-11-words-are-decisions:
+.. _2026-11-11-2026-11-11-words-are-decisions:
 
 Words are decisions
 -------------------
@@ -417,7 +417,7 @@ Done
 ----
 
 
-.. _2026-11-11-tad-in-rust:
+.. _2026-11-11-2026-11-11-tad-in-rust:
 
 tad in Rust replaces the vendored Python engine
 -----------------------------------------------
@@ -431,7 +431,7 @@ Done
 ----
 
 
-.. _2026-11-11-one-word-summary:
+.. _2026-11-11-2026-11-11-one-word-summary:
 
 A concept's text is its summary
 -------------------------------

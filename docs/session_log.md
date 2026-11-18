@@ -1,0 +1,402 @@
+<!-- Generated from data/ by tad. Do not edit by hand. -->
+
+# Session Log
+
+<a id="2026-10-29-the-idea-found"></a>
+### The idea: every layer is the top of the layers beneath it
+
+Entry date
+: 2026-10-29
+
+Done
+: Rebuilt the core as folders named for what the program is for, wrote one command as a worked example of the idea, and made the commands read as stories of named steps.
+
+Considered
+: Layering the core by technical role (ports, adapters, services), which is the usual hexagonal layout.
+
+Rejected
+: Folders named for patterns: they explain the architecture, not the program, and a newcomer learns nothing about what the program is for.
+
+---
+
+
+<a id="2026-10-29-measure-the-goal-and-automate"></a>
+### Measure the real goal, and automate the loop
+
+Entry date
+: 2026-10-29
+
+Done
+: Stopped judging progress by impressions: a structure-metrics script compared the code with each earlier release, and the first guards (a file is short enough to read whole, no print outside the presenter) were written as tests. The shipper and the fast gate were built the second time a step was done by hand.
+
+Considered
+: A line-count budget as the only measure.
+
+Rejected
+: Line counts alone: they are gamed by splitting a file without making it clearer, which is why the stranger test exists beside them.
+
+---
+
+
+<a id="2026-11-02-guards-and-ratchets"></a>
+### Rules found by reading become guards; debts become data
+
+Entry date
+: 2026-11-02
+
+Done
+: Each defect found by a read (a sentence written twice, a rule copied by hand, a boolean that was a noun) became a test that reads the source. Rules the code could not yet meet were recorded per file in a data file that may only shrink, so a debt is a list and progress cannot slip back. The last debts were paid the same day.
+
+Considered
+: A linter configuration for every rule.
+
+Rejected
+: A lint rule cannot read the generated outline, compare a document with the code, or ask the project a question; an ordinary test can.
+
+---
+
+
+<a id="2026-11-02-the-rename-incident"></a>
+### The retired word, seventy-nine times, and a rename that lied
+
+Entry date
+: 2026-11-02
+
+Done
+: Renamed 79 uses of a wrong word. Two regex attempts changed a JSON key and a fake tool's raw-string output without any test noticing; a lexer-based renamer that follows string interpolation and verifies that no string literal changed left all 65 hunks right, and a guard now keeps the word out of identifiers.
+
+Considered
+: Checking the diff by eye.
+
+Rejected
+: Eyes miss a one-character change in a long string; the property to check is that no literal changed, so the tool checks that.
+
+---
+
+
+<a id="2026-11-02-text-file-busy"></a>
+### Main's CI failed on the race I had measured away
+
+Entry date
+: 2026-11-02
+
+Done
+: A test spawned scripts it had just written and CI hit text-file-busy. Put every spawn and every script write behind one lock; a stress test with 16 threads and 4 CPU burners failed 120 of 120 runs before and 0 of 120 after. Wrote down that 740 clean runs on a fast machine are weak evidence against a rare race.
+
+Considered
+: Retrying a failed spawn.
+
+Rejected
+: A retry hides real contention and teaches the tests nothing; marking the test flaky would have buried the cause.
+
+---
+
+
+<a id="2026-11-02-ci-measured-then-optimised"></a>
+### CI, measured first, then optimised
+
+Entry date
+: 2026-11-02
+
+Done
+: Baseline over eight runs: median 193 seconds wall and 20.0 job-minutes. The audit step alone compiled its own tool for 181 seconds; a prebuilt cargo-deny, a timeout on every job, cache saved only from main, a job that skips the heavy checks for documents-only changes, and no incremental builds brought a full run to about 177 seconds and 15.7 job-minutes, and a documents-only change to 61 seconds. A speed-up claimed for one job was cherry-picked from the best runs and was retracted in the log when the later releases overlapped.
+
+Considered
+: mold as the linker, nextest as the runner, sccache for the Arch build, splitting the Btrfs job, a parallel reproducible build.
+
+Rejected
+: mold: lld is already the default linker since Rust 1.90. nextest: a process per test would defeat the in-process lock. The others did not pay in measurement.
+
+---
+
+
+<a id="2026-11-03-reads-and-scans"></a>
+### Seeded reads, and scans for what reading finds one at a time
+
+Entry date
+: 2026-11-03
+
+Done
+: Six seeded cold reads each found real issues (stale words, a rule copied in five places, a distinction the code made and never named); a scan for repeated code found them all at once, and a second mode, which forgets names and numbers and compares only shape, found a rule that had been copied and renamed.
+
+Considered
+: Reading more modules.
+
+Rejected
+: Reading finds one at a time and stops paying once a seed returns what has been read; a scan is cheap and complete.
+
+---
+
+
+<a id="2026-11-03-the-idea-page"></a>
+### Telling the reader the idea
+
+Entry date
+: 2026-11-03
+
+Done
+: Nothing in the repository said in plain words what the code was trying to be. Wrote one page that does: the idea, one request followed from the front door to the machine, how to tell it is healthy, and an honest account of how close each part is to the ideal.
+
+Considered
+: Leaving the idea in the canon and a reading list.
+
+Rejected
+: A newcomer finds well-organised code with no one telling them why it reads the way it does.
+
+---
+
+
+<a id="2026-11-03-reading-by-use"></a>
+### Using the program as a newcomer would
+
+Entry date
+: 2026-11-03
+
+Done
+: Sampling modules stopped finding anything, so the program was run on a real fixture and every word read: a preview that spent two of three numbers on zeros, a first snapshot that never said what its restore point was called, a header showing a retired word. A terminal UI was driven through a pseudo-terminal and its screens printed.
+
+Considered
+: More seeded reads.
+
+Rejected
+: They returned modules already read; the defects were in what the program says, which only using it shows.
+
+---
+
+
+<a id="2026-11-03-the-adapters-were-closer"></a>
+### A guess written as fact, corrected
+
+Entry date
+: 2026-11-03
+
+Done
+: The idea page said the adapters were the part least like the ideal. Reading each by its first line showed the opposite. The page was corrected, and the log says that I had guessed and was wrong.
+
+Considered
+: Leaving the page as written.
+
+Rejected
+: A document that claims how close the code is to the ideal and is not checked against the code is the first thing to rot.
+
+---
+
+
+<a id="2026-11-03-release-job-flake"></a>
+### A release failed on GitHub's own error
+
+Entry date
+: 2026-11-03
+
+Done
+: A package-repository job failed with an HTTP 500 while downloading the release's own assets. The failed job was re-run and completed the release; the download script retries five times now.
+
+Considered
+: Re-running by hand each time.
+
+Rejected
+: That is the repeated hand-work the playbook says to automate.
+
+---
+
+
+<a id="2026-11-03-releases-are-batched"></a>
+### Releases are batched, not one per merge
+
+Entry date
+: 2026-11-03
+
+Done
+: A release per merge cost about eight minutes of waiting and gave users a version every few minutes. The release pull request already collects changes, so the shipper stops merging it each time: it releases at ten changes that make a changelog entry, a week of waiting, a change to packaging or the release workflows, or on request. The policy is a small function with ten tested cases, proven to fail when the threshold is off by one.
+
+Considered
+: Releasing on a timer; releasing every merge but skipping verification.
+
+Rejected
+: A timer releases nothing when nothing changed and everything at once when much did; skipping verification removes the only proof of publishing.
+
+---
+
+
+<a id="2026-11-03-hint-ignored-its-switch"></a>
+### The tip that ignored its own switch
+
+Entry date
+: 2026-11-03
+
+Done
+: A hint added a few days earlier did not obey the option that silences hints; found by reading the documentation of the option. It obeys now, and the option says what it governs.
+
+Considered
+: Leaving it: it is only one line.
+
+Rejected
+: A new thing that lives beside an existing switch has to be wired to it; the switch's own documentation is where the omission shows.
+
+---
+
+
+<a id="2026-11-03-the-invented-dates"></a>
+### The log's dates were invented
+
+Entry date
+: 2026-11-03
+
+Done
+: While preparing this playbook from the development log, 51 of its 52 headings turned out to carry dates counted forward a day per entry; git said all the work was done in about eight days. They were corrected from git history, the log says so, and the agent notes now say an entry's date is today's date from the clock.
+
+Considered
+: Leaving the dates: nothing depended on them.
+
+Rejected
+: A record with invented dates cannot be trusted for anything else in it.
+
+---
+
+
+<a id="2026-11-03-engine-learns-rst"></a>
+### The text-as-data engine learns reStructuredText
+
+Entry date
+: 2026-11-03
+
+Done
+: The renderer builds each page once and writes it through a format object, so Markdown and reStructuredText are one class each; the default is unchanged (byte-identical on the template's real data), the output is validated with docutils with every warning an error, and the renderer, which had no tests, has ten. This repository is the first generated from the template to use it.
+
+Considered
+: Converting Markdown to reStructuredText with a separate tool afterwards.
+
+Rejected
+: A second tool has two sources of truth; rendering from the data keeps one.
+
+---
+
+
+<a id="2026-11-03-the-kit-is-tested-on-itself"></a>
+### The kit is generalised, and tested on itself
+
+Entry date
+: 2026-11-03
+
+Done
+: The shipper, the scans, the sampler, the gate, golden output and the CI report were made language- and project-neutral, and the ratchet, the outline and the findability ranking were ported to Python with tests. The sampler picks exactly the same modules as the original for the same seed. The duplicate scan matched the original's results (11 exact and 223 near runs) once given the original's exact notion of a trivial line, which showed the one remaining difference was deliberate (it also ignores closers like `});`). Golden output refuses to record a program that cannot be found or prints nothing, and a refused recording changes nothing. Three mutations of the guards were each caught by tests. The repository's own outline answers 11 real questions about its own scripts within the top three.
+
+Considered
+: Copying the scripts across unchanged, with a note that they were written for another project.
+
+Rejected
+: A copy hard-codes the first project's names, paths and release workflows, so the second project would start by editing a script it did not write; settings and options keep one script.
+
+---
+
+
+<a id="2026-11-03-the-site-was-missing"></a>
+### There was no site, and I had said there would be
+
+Entry date
+: 2026-11-03
+
+Done
+: Added a static-site builder (tools/build_site.py) that turns every .rst file into a page with docutils, rewrites links between pages, and fails the build on a link to a file that is not a page or an anchor that is not on its page; 21 pages and 99 links checked. It has seven tests, including that a broken link stops the build, and the anchor check was shown to be needed by switching it off. A workflow deploys it to GitHub Pages on every push to main, and CI builds it on every pull request.
+
+Considered
+: Sphinx, which adds a theme, a navigation tree and search.
+
+Rejected
+: Sphinx would read the generated pages' plain links to .rst files as external, broken links, and adds a dependency and a configuration to maintain; docutils alone is the reference implementation and needs only a link rewrite. It stays an option if search is ever wanted.
+
+---
+
+
+<a id="2026-11-04-the-audit"></a>
+### An audit of this repository against everything done in the chat
+
+Entry date
+: 2026-11-04
+
+Done
+: Compared the template's own agent instructions with this repository's: the data rules had lost their reasons, the recipes and the rationale were gone, and the rule that a factual claim needs a source was not enforced (18 of 34 practices cited nothing). Restored them, and added an invariant that every practice cites a source. Compared the kit with the work it came from and found it missing: the catalogue of guards as functions and the architecture guard that wires them up, structure metrics, a screen driver for terminal programs, the lexer-based splitter and renamer, the starting files (agent notes, idea page, log, plan, pull-request body), and CI, release and dependency configuration with the measured levers. All added, with tests; each generalised tool was compared with its original on the project it came from, and every difference was explained.
+
+Considered
+: Linking to snapall's files for the missing pieces.
+
+Rejected
+: A reader of the playbook who wants to start a project should not have to read another project to find the templates; links go stale and the playbook must stand alone.
+
+---
+
+
+<a id="2026-11-04-kit-on-a-fresh-repository"></a>
+### The kit, run on a repository that is not its origin
+
+Entry date
+: 2026-11-04
+
+Done
+: Ran the shipper, the timing report and the gate against this repository and fixed three defects (a workflow name matched case-sensitively, a gate that assumed where it lives, an unclear check message). The gate now runs as part of the tests, so it cannot silently stop working.
+
+Considered
+: Declaring the kit complete because every test passed.
+
+Rejected
+: Every test ran on the project the tools came from; a tool that has not been run elsewhere has not been tested for being general.
+
+---
+
+
+<a id="2026-11-11-2026-11-11-look-around-first"></a>
+### Look around first
+
+Entry date
+: 2026-11-11
+
+Done
+: A practice for agents and humans alike, from the author: no action is complete without a clear look at what is and why. Rests on Chesterton's fence, genchi genbutsu and the OODA loop; in ocoeco it is the research table, cited by decisions and shown beside steps.
+
+Considered
+: Leaving it to the observatory's agent practices alone.
+
+Rejected
+: That: it is how an ideal project works for anyone, not only for agents.
+
+---
+
+
+<a id="2026-11-11-2026-11-11-words-are-decisions"></a>
+### Words are decisions
+
+Entry date
+: 2026-11-11
+
+Done
+: From the author: wording is part of perfection. A practice of the ideal project, on the ubiquitous language, Orwell and plain-language guidelines; in ocoeco a vocabulary entry names the decision that chose it.
+
+---
+
+
+<a id="2026-11-11-2026-11-11-tad-in-rust"></a>
+### tad in Rust replaces the vendored Python engine
+
+Entry date
+: 2026-11-11
+
+Done
+: The playbook is the first repository on tad in Rust: tables.toml (the tables and the rules across them) is the authority, tad is installed from its pinned release with its checksum checked, and the vendored .tad copy, schema.sql, load.sql and checks/*.sql are gone. AGENTS.rst got simpler. The switch's commit said the documents would change; none did - the older renderer wrote the same reStructuredText for this repository's shapes.
+
+---
+
+
+<a id="2026-11-11-2026-11-11-one-word-summary"></a>
+### A concept's text is its summary
+
+Entry date
+: 2026-11-11
+
+Done
+: The concepts table's statement field is now summary, the word the shared language (ocoeco's language.toml) and twenty other projects use; the observatory showed this repository's concepts without their text because of it. Found by checking every project against the shared language.
+
+Considered
+: Teaching the shared language a second word for the same thing.
+
+Rejected
+: That: one role, one word.
