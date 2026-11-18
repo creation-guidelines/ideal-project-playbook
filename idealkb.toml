@@ -1,0 +1,6 @@
+# This base follows grenudi/ideal-knowledge-base at the release named here: the files its generic list names, and the part of
+# AGENTS.md and tables.toml between its marker lines. The pin job (ideal-knowledge-base bin/update-pins.sh) moves it;
+# own names the files this base keeps as its own; source is where the job finds its releases.
+source = "grenudi/ideal-knowledge-base"
+version = "0.20.0"
+own = []

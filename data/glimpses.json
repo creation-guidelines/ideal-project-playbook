@@ -6,3 +6,4 @@
 {"id":"g-20261116-155138","at":"2026-11-16T15:51:38Z","by":"claude","kind":"chore","summary":"a mark: what the gatherer writes is said where it writes it - no longer named here"}
 {"id":"g-20261117-050046","at":"2026-11-17T05:00:46Z","by":"conveyor","kind":"docs","summary":"The command line, declared once: argenv, in the tools chapter"}
 {"id":"g-20261118-145618","at":"2026-11-18T14:56:18Z","by":"tad update-pins","kind":"build","summary":"tad 0.7.1: the pin moved, the data and documents re-rendered"}
+{"id":"g-20261118-184339","at":"2026-11-18T18:43:39Z","by":"-","kind":"feat","summary":"the playbook follows ideal-knowledge-base 0.20.0: standing tables, ikb records"}

@@ -8,6 +8,7 @@ export DOCS_FORMAT ?= rst
 setup:            ## install tad (its pinned release) and the tools' Python packages
 	./bin/install-tad.sh
 	$(TAD) engine
+	sh bin/install-ikb.sh
 	pip install -r tools/requirements.txt -r kit/requirements.txt
 check:            ## every row and every rule across tables (tables.toml)
 	$(TAD) check
