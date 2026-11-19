@@ -3,7 +3,7 @@
 Index
 =====
 
-- `Backlog <backlog.rst>`__: 6
+- `Backlog <backlog.rst>`__: 7
 - `Concepts <concepts.rst>`__: 37
 - `Decisions <decisions.rst>`__: 0
 - `Hardware <hardware.rst>`__: 0

@@ -78,3 +78,19 @@ Note
 
 Opened
 : 2026-11-03
+
+
+<a id="retire-own-python"></a>
+### Measure what uses the playbook's Python, port the live files to shell or Rust, retire the rest
+
+Status
+: open
+
+Note
+: Practice 21: no Python of our own. kit/guards/*.py, kit/rust/*.py, kit/scripts/*.py and tools/*.py (build_site, check_paths, check_rst) run in make test, rst and site. First measure what still calls each file (Makefile, CI, kit templates), then port the live ones to shell or rust-script and delete the rest, with their tests.
+
+About
+: licences
+
+Opened
+: 2026-11-19
