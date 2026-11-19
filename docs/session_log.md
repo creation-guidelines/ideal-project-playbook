@@ -400,3 +400,24 @@ Considered
 
 Rejected
 : That: one role, one word.
+
+---
+
+
+<a id="2026-11-19-the-kit-s-scripts-were-relicensed-from-gpl-3-0"></a>
+### The kit's scripts were relicensed from GPL-3.0-or-later to MIT OR Apache-2.0
+
+Entry date
+: 2026-11-19
+
+Done
+: The author's word, relayed by the coordinator on 2026-11-19: "Relicense to MIT/Apache". The 25 SPDX headers in kit/ and tools/ now read MIT OR Apache-2.0; the author holds the copyright (the kit was written for him), so no other holder is asked. The knowledge stays CC-BY-SA-4.0.
+
+Considered
+: Keeping the kit GPL-3.0-or-later with its own LICENSE-GPL.
+
+Rejected
+: Keeping GPL: the author chose permissive for the scripts, which are meant to be copied into other projects.
+
+About
+: licences

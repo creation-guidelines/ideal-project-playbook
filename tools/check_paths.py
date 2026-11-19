@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 """check_paths.py - a document that names a file of this repository names one that exists.
 
     python3 tools/check_paths.py

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 """check_rst.py - every reStructuredText file in the repository is valid, and no warning is let through.
 
     python3 tools/check_rst.py            check every *.rst (the generated pages in docs/ included)

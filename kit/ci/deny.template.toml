@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 # What `cargo deny check licenses bans sources advisories` enforces in CI: replace the licence list with what YOUR project can accept.
 # The advisories policy below was proven locally against a known-bad project (a dependency on a version with a known vulnerability) before it replaced

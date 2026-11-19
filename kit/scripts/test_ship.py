@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """The release policy of ship.py, which decides when a merge releases. A wrong answer either floods users with versions or
 never releases, and nothing else would notice."""

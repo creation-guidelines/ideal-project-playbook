@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """Split one big module file into a directory of modules by purpose, moving whole items and rewriting none.
 
@@ -22,7 +22,7 @@ and pay the debts that were paid: UPDATE_RATCHETS=1 on the same test.
 import re, os, sys, json
 spec=json.load(open(sys.argv[1]))
 D=spec["dir"]; NAME=spec["name"]
-HDR="// SPDX-FileCopyrightText: 2026 grenudi\n//\n// SPDX-License-Identifier: GPL-3.0-or-later\n\n"
+HDR="// SPDX-FileCopyrightText: 2026 grenudi\n//\n// SPDX-License-Identifier: MIT OR Apache-2.0\n\n"
 whole=open(f"{D}{NAME}.rs").read()
 tm=re.search(r"#\[cfg\(test\)\]\nmod tests \{",whole)
 if tm:

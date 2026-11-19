@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 """build_site.py - the repository's reStructuredText as a small static site, for GitHub Pages.
 
     python3 tools/build_site.py [OUTPUT_DIR]        (default: _site)

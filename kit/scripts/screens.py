@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """Look at the screens of a terminal program as a person would: run it in a pseudo-terminal, press keys, and print what is on the screen after each.
 

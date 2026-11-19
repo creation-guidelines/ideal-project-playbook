@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 """Tests for tools/build_site.py. Plain asserts, no framework: ``python3 tools/test_site.py``."""
 import importlib.util
 import os

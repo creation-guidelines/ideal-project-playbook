@@ -16,7 +16,7 @@ for f in $(git ls-files); do
 	[ $ok = 1 ] || { [ -f "$f" ] && head -20 "$f" 2>/dev/null | grep -aq 'SPDX-License-Identifier:'; } && ok=1
 	[ $ok = 1 ] || { echo "no licence for $f (REUSE.toml annotation or an SPDX header)"; bad=1; }
 done
-ids=$({ sed -n 's/^SPDX-License-Identifier = "\(.*\)"$/\1/p' REUSE.toml 2>/dev/null; git grep -ahoE 'SPDX-License-Identifier: [A-Za-z0-9.-]+( (OR|AND) [A-Za-z0-9.-]+)*' -- . ':!bin/check-licences.sh' 2>/dev/null | sed 's/.*Identifier: //'; } | tr ' ' '\n' | grep -vE '^(OR|AND|)$' | sort -u)
+ids=$({ sed -n 's/^SPDX-License-Identifier = "\(.*\)"$/\1/p' REUSE.toml 2>/dev/null; for f in $(git ls-files); do head -20 "$f" 2>/dev/null | grep -ahoE 'SPDX-License-Identifier: [A-Za-z0-9.-]+( (OR|AND) [A-Za-z0-9.-]+)*' | sed 's/.*Identifier: //'; done; } | tr ' ' '\n' | grep -vE '^(OR|AND|)$' | sort -u)
 for id in $ids; do
 	case $id in
 	MIT) t=LICENSE-MIT ;; Apache-2.0) t=LICENSE-APACHE ;; CC-BY-SA-4.0) t=LICENSE-CC-BY-SA-4.0 ;;
