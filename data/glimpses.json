@@ -10,3 +10,4 @@
 {"id":"g-20261118-212429","at":"2026-11-18T21:24:29Z","by":"ikb-cli","kind":"chore","summary":"the playbook follows ideal-knowledge-base 0.21.0: backlog in canonical form"}
 {"id":"g-20261119-004606","at":"2026-11-19T00:46:06Z","by":"ikb-cli","kind":"feat","summary":"licences: CC-BY-SA-4.0 for the playbook, MIT OR Apache-2.0 for the kit"}
 {"id":"g-20261119-004949","at":"2026-11-19T00:49:49Z","by":"ikb-cli","kind":"chore","summary":"the kit is relicensed to MIT OR Apache-2.0 by the author's word"}
+{"id":"g-20261119-005043","at":"2026-11-19T00:50:43Z","by":"ikb-cli","kind":"docs","summary":"backlog: retire the playbook's own Python (practice 21)"}
