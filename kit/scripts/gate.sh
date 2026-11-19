@@ -1,7 +1,7 @@
 #!/bin/bash
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 #
 # Generalised from snapall's dev/gate.sh: the step mechanism is the part worth keeping; the steps are your project's.
 #

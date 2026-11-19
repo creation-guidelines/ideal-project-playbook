@@ -8,7 +8,7 @@ Index
 - `Decisions <decisions.rst>`__: 0
 - `Hardware <hardware.rst>`__: 0
 - `Research <research.rst>`__: 0
-- `Session Log <session_log.rst>`__: 23
+- `Session Log <session_log.rst>`__: 24
 - `Sources <sources.rst>`__: 17
 - `Summaries <summaries.rst>`__: 0
 - `Upstream Items <upstream_items.rst>`__: 0

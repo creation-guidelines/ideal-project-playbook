@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """The catalogue of guards, as functions: each reads source files and returns ``{name: number}``, which is exactly what ``ratchet.check`` takes.
 

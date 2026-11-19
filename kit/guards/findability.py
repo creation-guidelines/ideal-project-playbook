@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """The cold read, as a test: does the outline alone lead a stranger to the module that answers each question?
 

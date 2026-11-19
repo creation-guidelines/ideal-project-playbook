@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 
 """The outline: every module of a program with the first sentence that says what it is for, which a stranger can read alone.
 

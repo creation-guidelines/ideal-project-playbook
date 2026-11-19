@@ -57,4 +57,9 @@ Status
 ------
 
 Early. The honest next test is a **second project in another language** (see ``docs/backlog.rst``): nothing here has been tried beyond the project it came from, and it has not run on the author's own
-machine yet. The kit's guards are tested on small fixtures. No licence has been chosen for the text; the scripts in ``kit/scripts/`` carry the SPDX headers they had in ``snapall`` (GPL-3.0-or-later).
+machine yet. The kit's guards are tested on small fixtures. Licences are in the Licence section below.
+
+Licence
+-------
+
+The playbook (the data, the pages rendered from it, the prose) is CC-BY-SA-4.0 (``LICENSE-CC-BY-SA-4.0``). The kit's scripts, guards and templates, and the queries, records and schema, are MIT OR Apache-2.0 at your choice (``LICENSE-MIT``, ``LICENSE-APACHE``). ``sh bin/check-licences.sh`` (run in CI) checks that every tracked file is covered; ``REUSE.toml`` says which.

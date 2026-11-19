@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-FileCopyrightText: 2026 grenudi
 #
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: MIT OR Apache-2.0
 #
 # Generalised from snapall's dev/ship.py: what was specific to that project is a setting (SHIP_* environment variables, below).
 
