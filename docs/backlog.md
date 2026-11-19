@@ -81,13 +81,13 @@ Opened
 
 
 <a id="retire-own-python"></a>
-### Measure what uses the playbook's Python, port the live files to shell or Rust, retire the rest
+### Measure what uses the playbook's Python, port the live files to Rust, retire the rest
 
 Status
 : open
 
 Note
-: Practice 21: no Python of our own. kit/guards/*.py, kit/rust/*.py, kit/scripts/*.py and tools/*.py (build_site, check_paths, check_rst) run in make test, rst and site. First measure what still calls each file (Makefile, CI, kit templates), then port the live ones to shell or rust-script and delete the rest, with their tests.
+: Practice 21: no Python of our own. kit/guards/*.py, kit/rust/*.py, kit/scripts/*.py and tools/*.py (build_site, check_paths, check_rst) run in make test, rst and site. First measure what still calls each file (Makefile, CI, kit templates), then port the live ones to Rust (rust-script for a single file, a crate where it repeats) and delete the rest with their tests. Shell only for true one-off glue that strings commands together: the author, 2026-11-19, 'shell is even worse than python for any scripts that isnt a one off glue'.
 
 About
 : licences
